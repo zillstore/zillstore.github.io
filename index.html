@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZILL | The Collection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Syne:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: #f4f4f4; color: #111; margin: 0; }
+        .brand-font { font-family: 'Syne', sans-serif; }
+        .size-option { border: 1px solid #d4d4d4; border-radius: 999px; padding: 9px 17px; font-size: 12px; transition: .2s; }
+        .size-option.selected { background: #111; color: white; border-color: #111; }
+        .size-option:disabled { opacity: .35; cursor: not-allowed; }
+        .fade-text {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .slide-img {
+            transition: opacity 0.24s ease, transform 0.24s ease;
+            will-change: opacity, transform;
+        }
+        .slide-img.is-swapping {
+            opacity: 0.15;
+            transform: scale(0.97);
+        }
+
+        .fade-text.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* نص العروض المتحرك بنفس لون خلفية الموقع بدون شريط */
+        #offers-bar {
+            width: 100%;
+            height: 32px;
+            overflow: hidden;
+            position: relative;
+            background-color: #f4f4f4;
+            color: #525252;
+            display: none;
+            white-space: nowrap;
+            direction: ltr;
+            z-index: 45;
+        }
+        #offers-track {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            min-width: max-content;
+            height: 100%;
+            white-space: nowrap;
+            direction: ltr;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-play-state: running;
+            will-change: transform;
+        }
+        .offer-item {
+            display: inline-flex;
+            align-items: center;
+            flex: 0 0 auto;
+            padding: 0 28px;
+            font-size: 11.5px;
+            font-weight: 600;
+            letter-spacing: .2px;
+            color: #404040;
+            white-space: nowrap;
+            direction: rtl;
+        }
+        @media (min-width: 640px) {
+            #offers-bar {
+                height: 36px;
+            }
+            .offer-item {
+                padding: 0 40px;
+                font-size: 13px;
+            }
+        }
+        @keyframes zillOffersLTR {
+            from { transform: translate3d(-50%, 0, 0); }
+            to { transform: translate3d(0, 0, 0); }
+        }
+        @keyframes zillOffersRTL {
+            from { transform: translate3d(0, 0, 0); }
+            to { transform: translate3d(-50%, 0, 0); }
+        }
+    </style>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body class="bg-[#f4f4f4] text-neutral-900 min-h-screen flex flex-col justify-between">
+
+    <!-- شاشة الإنترو -->
+    <div id="intro-screen" class="fixed inset-0 z-50 bg-[#f4f4f4] text-[#111] flex flex-col justify-between p-8 md:p-12 transition-opacity duration-1000">
+        <div class="flex justify-between items-center w-full">
+            <div class="flex flex-col items-start">
+                <span class="brand-font text-2xl font-bold tracking-tight text-black">ظل</span>
+                <span class="brand-font text-[10px] tracking-[0.3em] text-neutral-500 uppercase -mt-1">Zill</span>
+            </div>
+            <button onclick="skipIntro()" class="text-xs tracking-wider text-neutral-600 hover:text-black px-4 py-2 rounded-full border border-neutral-300 hover:border-black transition">
+                تخطي ✕
+            </button>
+        </div>
+
+        <div class="my-auto max-w-2xl mx-auto text-center px-4">
+            <div class="h-28 flex items-center justify-center">
+                <div id="scene-content" class="fade-text"></div>
+            </div>
+        </div>
+        <div></div>
+    </div>
+
+    <!-- الهيدر الرئيسي -->
+    <header class="w-full px-5 md:px-8 py-4 md:py-6 flex justify-between items-center gap-3 border-b border-neutral-200 bg-[#f4f4f4]/80 backdrop-blur-md sticky top-0 z-40">
+        <div class="flex flex-col items-start shrink-0">
+            <span class="brand-font text-lg sm:text-xl font-bold tracking-tight text-black">ظل</span>
+            <span class="brand-font text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] text-neutral-500 uppercase -mt-1">zill</span>
+        </div>
+        
+        <div class="flex items-center gap-2 sm:gap-4 min-w-0">
+            <input type="text" id="search-input" oninput="filterProducts()" placeholder="ابحث عن قطعة..." class="bg-white border border-neutral-300 rounded-full px-4 py-1.5 text-xs focus:outline-none focus:border-black transition w-36 sm:w-52 md:w-64">
+            
+            <button onclick="toggleCartModal()" class="relative text-[11px] sm:text-xs tracking-wider text-neutral-800 hover:text-black px-3 sm:px-5 py-1.5 sm:py-2 rounded-full border border-neutral-300 hover:border-black transition flex items-center gap-1.5 sm:gap-2 shrink-0">
+                <span>السلة</span>
+                <span id="cart-count" class="bg-black text-white text-[10px] px-1.5 py-0.5 rounded-full">0</span>
+            </button>
+
+            <button type="button" id="account-btn" onclick="toggleAccountModal()" title="الحساب" aria-label="الحساب" class="relative text-[11px] sm:text-xs tracking-wider text-neutral-800 hover:text-black px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-full border border-neutral-300 hover:border-black transition flex items-center gap-1.5 shrink-0 bg-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span id="account-btn-label" class="hidden sm:inline max-w-[90px] truncate">حسابي</span>
+            </button>
+
+            <button onclick="replayIntro()" class="text-xs tracking-wider text-neutral-600 hover:text-black px-3 py-2 rounded-full border border-neutral-200 transition hidden md:block">
+                🎬 Replay Intro
+            </button>
+        </div>
+    </header>
+
+    <!-- شريط العروض أسفل الهيدر الرئيسي -->
+    <div id="offers-bar" aria-label="العروض">
+        <div id="offers-track"></div>
+    </div>
+
+    <!-- شريط الأقسام -->
+    <nav class="relative z-20 max-w-6xl mx-auto px-5 md:px-6 mt-6 md:mt-8 flex gap-2.5 md:gap-3 overflow-x-auto pb-2" id="categories-container">
+        <button type="button" onclick="filterCategory('All')" class="category-btn active shrink-0 whitespace-nowrap px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-semibold bg-black text-white transition">All</button>
+    </nav>
+
+    <!-- المنتجات -->
+    <main class="max-w-6xl mx-auto px-5 md:px-6 py-6 md:py-8 w-full flex-grow">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8" id="products-grid"></div>
+    </main>
+
+    <!-- صفحة تفاصيل المنتج -->
+    <div id="product-modal" class="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4" onclick="if(event.target===this) closeProductDetails()">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto shadow-2xl relative">
+            <button onclick="closeProductDetails()" class="absolute top-4 left-4 z-10 bg-white/90 rounded-full w-9 h-9 text-lg">✕</button>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-5 md:p-8">
+                <div>
+                    <div id="detail-main-image" class="w-full aspect-[4/5] bg-white rounded-xl overflow-hidden border border-neutral-100"></div>
+                    <div id="detail-thumbnails" class="flex gap-2 mt-3 overflow-x-auto"></div>
+                </div>
+                <div class="flex flex-col justify-center py-2">
+                    <span id="detail-category" class="text-[10px] uppercase tracking-widest text-neutral-400 brand-font"></span>
+                    <h2 id="detail-name" class="brand-font text-2xl font-bold mt-2"></h2>
+                    <p id="detail-price" class="font-bold text-lg mt-4"></p>
+                    <div class="border-t border-neutral-100 my-5"></div>
+                    <h3 class="text-sm font-semibold mb-2">تفاصيل القطعة</h3>
+                    <p id="detail-description" class="text-sm text-neutral-600 leading-8 whitespace-pre-line"></p>
+                    <div class="mt-6">
+                        <label class="block text-xs text-neutral-500 mb-2">اختار المقاس</label>
+                        <div id="detail-sizes" class="flex flex-wrap gap-2"></div>
+                        <p id="detail-size-hint" class="text-[11px] text-red-500 mt-2"></p>
+                    </div>
+                    <button id="detail-add-button" onclick="addSelectedProductToCart()" class="w-full bg-black text-white py-3 rounded-xl text-xs font-semibold mt-6 hover:bg-neutral-800 transition">أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة تنبيه الإضافة للسلة -->
+    <div id="toast-modal" class="fixed inset-0 z-[70] bg-black/40 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl space-y-4">
+            <h3 class="brand-font text-base font-bold">تمت إضافة المنتج للسلة</h3>
+            <p class="text-xs text-neutral-500">اذهب للسلة لتاكيد الاوردر أو تابع التسوق.</p>
+            <div class="flex gap-2 pt-2">
+                <button onclick="closeToastAndGoCart()" class="flex-1 bg-black text-white py-2.5 rounded-xl text-xs font-semibold hover:bg-neutral-800 transition">اذهب للسلة</button>
+                <button onclick="closeToast()" class="flex-1 bg-neutral-100 text-neutral-800 py-2.5 rounded-xl text-xs font-semibold hover:bg-neutral-200 transition">اختيار منتج آخر</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة سلة الطلبات وتأكيد الشراء -->
+    <div id="cart-modal" class="fixed inset-0 z-[65] bg-black/50 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4" onclick="if(event.target===this) toggleCartModal()">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-xl flex flex-col max-h-[92vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b pb-3 mb-3 shrink-0">
+                <h3 class="brand-font text-lg font-bold">سلة الطلبات وتأكيد الشراء</h3>
+                <button onclick="toggleCartModal()" class="text-neutral-500 hover:text-black text-sm px-2 py-1">✕ إغلاق</button>
+            </div>
+            
+            <div id="cart-items-container" class="shrink-0 overflow-y-auto max-h-48 min-h-[76px] bg-neutral-50/70 rounded-xl px-3 py-1 divide-y divide-neutral-200/70 mb-4 border border-neutral-100"></div>
+
+            <div class="space-y-3 border-t pt-4">
+                <div>
+                    <label class="block text-xs text-neutral-500 mb-1">الاسم الكامل</label>
+                    <input type="text" id="customer-name" class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-black" placeholder="اكتب اسمك هنا...">
+                </div>
+                <div>
+                    <label class="block text-xs text-neutral-500 mb-1">رقم الهاتف</label>
+                    <input type="tel" id="customer-phone" inputmode="numeric" pattern="[0-9]*" maxlength="11" oninput="sanitizePhoneInput(this)" class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-black" placeholder="01xxxxxxxxx">
+                </div>
+                <div>
+                    <label class="block text-xs text-neutral-500 mb-1">المحافظة (تحديد سعر الشحن تلقائياً)</label>
+                    <select id="customer-governorate" onchange="updateCartUI()" class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-black">
+                        <option value="0">اختر المحافظة...</option>
+                        <option value="50">القاهرة والجيزة (50 EGP)</option>
+                        <option value="60">الإسكندرية (60 EGP)</option>
+                        <option value="70">باقي المحافظات (70 EGP)</option>
+                    </select>
+                </div>
+                <div>
+                    <label id="address-label" class="block text-xs text-neutral-500 mb-1">أدخل عنوانك</label>
+                    <textarea id="customer-address" class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-black" placeholder="أدخل عنوانك (المدينة، الشارع...)"></textarea>
+                </div>
+            </div>
+
+            <div class="border-t pt-4 mt-4 space-y-1.5">
+                <div class="flex justify-between text-xs text-neutral-500">
+                    <span>قيمة المنتجات:</span>
+                    <span id="products-subtotal">0 EGP</span>
+                </div>
+                <div id="discount-row" class="hidden justify-between text-xs text-emerald-700 font-semibold">
+                    <span id="discount-label">الخصم:</span>
+                    <span id="discount-amount">-0 EGP</span>
+                </div>
+                <div class="flex justify-between text-xs text-neutral-500">
+                    <span>سعر الشحن:</span>
+                    <span id="shipping-cost">0 EGP</span>
+                </div>
+                <div class="flex justify-between font-bold text-sm pt-2 border-t">
+                    <span>الإجمالي الكلي:</span>
+                    <span id="cart-total">0 EGP</span>
+                </div>
+
+                <div class="pt-3 mt-2 border-t border-neutral-100">
+                    <label for="promo-code-input" class="block text-xs text-neutral-500 mb-1.5">كود الخصم (اختياري)</label>
+                    <div class="flex gap-2">
+                        <input type="text" id="promo-code-input" onkeydown="if(event.key==='Enter'){event.preventDefault();applyPromoCode();}" oninput="onPromoInputChange()" class="flex-1 bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2 text-xs uppercase focus:outline-none focus:border-black" placeholder="اكتب كود الخصم هنا...">
+                        <button type="button" id="apply-promo-btn" onclick="applyPromoCode()" class="bg-neutral-900 text-white px-4 py-2 rounded-lg text-xs font-semibold hover:bg-neutral-700 transition shrink-0">تطبيق</button>
+                    </div>
+                    <p id="promo-status-msg" class="text-[11px] mt-1.5 hidden"></p>
+                </div>
+
+                <button onclick="confirmOrder()" class="w-full bg-black text-white py-3 mt-3 rounded-xl text-xs font-semibold tracking-wider hover:bg-neutral-800 transition">
+                    تأكيد الاوردر ✅
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة حساب العميل -->
+    <div id="account-modal" class="fixed inset-0 z-[75] bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4" onclick="if(event.target===this) toggleAccountModal()">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative space-y-4">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="brand-font text-base font-bold">حساب العميل</h3>
+                <button type="button" onclick="toggleAccountModal()" class="text-neutral-500 hover:text-black text-sm px-2 py-1">✕ إغلاق</button>
+            </div>
+
+            <div id="account-logged-out" class="space-y-3 py-1">
+                <p class="text-xs text-neutral-600 leading-6">
+                    سجّل بريدك الإلكتروني لتصلك أحدث العروض والإصدارات الخاصة من ZILL.
+                </p>
+                <div>
+                    <label for="account-name-input" class="block text-xs text-neutral-500 mb-1">الاسم (اختياري)</label>
+                    <input type="text" id="account-name-input" class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-black" placeholder="الاسم الكامل">
+                </div>
+                <div>
+                    <label for="account-email-input" class="block text-xs text-neutral-500 mb-1">البريد الإلكتروني</label>
+                    <input type="email" id="account-email-input" dir="ltr" class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-black text-left" placeholder="name@example.com">
+                </div>
+                <p id="account-error-msg" class="text-[11px] text-red-500 hidden"></p>
+                <button type="button" id="save-account-btn" onclick="registerSimpleAccount()" class="w-full bg-black text-white py-2.5 rounded-xl text-xs font-semibold hover:bg-neutral-800 transition">
+                    تأكيد تسجيل الحساب
+                </button>
+            </div>
+
+            <div id="account-logged-in" class="hidden space-y-4">
+                <div class="bg-neutral-50 p-3.5 rounded-xl border border-neutral-100 space-y-1">
+                    <p id="account-name" class="text-sm font-bold text-neutral-900 truncate"></p>
+                    <p id="account-email" class="text-xs text-neutral-600 truncate" dir="ltr"></p>
+                </div>
+                <p id="account-sync-status" class="text-[11px] text-emerald-700 font-semibold leading-5"></p>
+                <button type="button" onclick="signOutGoogleAccount()" class="w-full border border-neutral-300 text-neutral-700 hover:border-black hover:text-black py-2.5 rounded-xl text-xs font-semibold transition">
+                    تسجيل الخروج
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="w-full py-6 text-center border-t border-neutral-200 text-neutral-400 text-xs brand-font tracking-widest">
+        <div>ZILL © 2026 • ALL RIGHTS RESERVED</div>
+        <div class="mt-3 text-neutral-600 tracking-normal font-sans">
+            <span class="font-semibold">الدعم الفني:</span>
+            <a href="tel:01042898254" class="mx-1 hover:text-black" dir="ltr">01042898254</a>
+            <span class="mx-1">•</span>
+            <a href="https://instagram.com/zillstor.e" target="_blank" rel="noopener noreferrer" class="mx-1 hover:text-black" dir="ltr">@zillstor.e</a>
+        </div>
+    </footer>
+
+    <script>
+        // --- الإنترو ---
+        const scenes = [
+            { type: "text", content: "«كما لا يفارقك ظلك...»" },
+            { type: "text", content: "«ما دام للنور حضور.»" },
+            { type: "text", content: "«نحن في ZILL نؤمن أن الحكاية لا تنتهي عند الاختيار...»" },
+            { type: "text", content: "«بل تبدأ من أول خطوة.»" },
+            { type: "text", content: "«ونظل معك... حتى تصل إليك اختياراتك.»" },
+            { type: "final", title: "ZILL", subtitle: "More than a choice. A presence." }
+        ];
+
+        let currentScene = 0;
+        let introTimer;
+
+        function playScene() {
+            const container = document.getElementById('scene-content');
+            container.classList.remove('active');
+            setTimeout(() => {
+                if (currentScene < scenes.length) {
+                    const scene = scenes[currentScene];
+                    if (scene.type === "text") {
+                        container.innerHTML = `<p class="text-xl md:text-3xl font-light text-neutral-800 leading-relaxed">${scene.content}</p>`;
+                    } else if (scene.type === "final") {
+                        container.innerHTML = `
+                            <div>
+                                <h1 class="brand-font text-5xl md:text-7xl font-light tracking-tight text-black mb-3">${scene.title}</h1>
+                                <p class="brand-font text-xs md:text-sm tracking-[0.3em] text-neutral-500 uppercase">${scene.subtitle}</p>
+                            </div>
+                        `;
+                    }
+                    container.classList.add('active');
+                    let duration = (currentScene === scenes.length - 1) ? 3000 : 2200;
+                    currentScene++;
+                    introTimer = setTimeout(playScene, duration);
+                } else {
+                    skipIntro();
+                }
+            }, 350);
+        }
+
+        function startIntroSequence() { currentScene = 0; playScene(); }
+        function skipIntro() {
+            clearTimeout(introTimer);
+            const screen = document.getElementById('intro-screen');
+            if (!screen) return;
+            screen.style.pointerEvents = 'none';
+            screen.style.opacity = '0';
+            setTimeout(() => { screen.style.display = 'none'; }, 1000);
+        }
+        function replayIntro() {
+            const screen = document.getElementById('intro-screen');
+            if (!screen) return;
+            screen.style.display = 'flex';
+            screen.style.pointerEvents = 'auto';
+            setTimeout(() => { screen.style.opacity = '1'; }, 50);
+            startIntroSequence();
+        }
+
+        // --- حساب العميل ---
+        const CUSTOMER_STORAGE_KEY = 'zill_customer_account_v2';
+        const REGISTERED_EMAILS_KEY = 'zill_registered_emails_v1';
+        let currentCustomer = null;
+
+        function loadSavedCustomer() {
+            try {
+                const raw = localStorage.getItem(CUSTOMER_STORAGE_KEY) || sessionStorage.getItem(CUSTOMER_STORAGE_KEY);
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                if (parsed && parsed.email) {
+                    return {
+                        name: String(parsed.name || '').trim(),
+                        email: String(parsed.email || '').trim().toLowerCase()
+                    };
+                }
+            } catch (e) {}
+            return null;
+        }
+
+        function persistCustomer(customer) {
+            try {
+                if (customer && customer.email) {
+                    const serialized = JSON.stringify({
+                        name: String(customer.name || '').trim(),
+                        email: String(customer.email || '').trim().toLowerCase()
+                    });
+                    localStorage.setItem(CUSTOMER_STORAGE_KEY, serialized);
+                    sessionStorage.setItem(CUSTOMER_STORAGE_KEY, serialized);
+                } else {
+                    localStorage.removeItem(CUSTOMER_STORAGE_KEY);
+                    sessionStorage.removeItem(CUSTOMER_STORAGE_KEY);
+                }
+            } catch (e) {}
+        }
+
+        function getRegisteredEmailsList() {
+            try {
+                const raw = localStorage.getItem(REGISTERED_EMAILS_KEY);
+                const arr = raw ? JSON.parse(raw) : [];
+                return Array.isArray(arr) ? arr.map(e => String(e || '').trim().toLowerCase()).filter(Boolean) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function markEmailAsRegistered(email) {
+            const clean = String(email || '').trim().toLowerCase();
+            if (!clean) return;
+            const list = getRegisteredEmailsList();
+            if (!list.includes(clean)) {
+                list.push(clean);
+                try {
+                    localStorage.setItem(REGISTERED_EMAILS_KEY, JSON.stringify(list));
+                } catch (e) {}
+            }
+        }
+
+        currentCustomer = loadSavedCustomer();
+
+        function updateAccountUI(syncMessage = '') {
+            const btnLabel = document.getElementById('account-btn-label');
+            const loggedOutBox = document.getElementById('account-logged-out');
+            const loggedInBox = document.getElementById('account-logged-in');
+            const nameEl = document.getElementById('account-name');
+            const emailEl = document.getElementById('account-email');
+            const statusEl = document.getElementById('account-sync-status');
+
+            if (currentCustomer && currentCustomer.email) {
+                if (btnLabel) btnLabel.textContent = currentCustomer.name || currentCustomer.email.split('@')[0] || 'حسابي';
+                if (loggedOutBox) loggedOutBox.classList.add('hidden');
+                if (loggedInBox) loggedInBox.classList.remove('hidden');
+                if (nameEl) nameEl.textContent = currentCustomer.name || 'عميل ZILL';
+                if (emailEl) emailEl.textContent = currentCustomer.email;
+                if (statusEl) {
+                    statusEl.textContent = syncMessage || 'تم تسجيل حسابك بنجاح، ستصلك أحدث العروض على بريدك الإلكتروني.';
+                }
+
+                const custNameInput = document.getElementById('customer-name');
+                if (custNameInput && !custNameInput.value.trim() && currentCustomer.name) {
+                    custNameInput.value = currentCustomer.name;
+                }
+            } else {
+                if (btnLabel) btnLabel.textContent = 'حسابي';
+                if (loggedOutBox) loggedOutBox.classList.remove('hidden');
+                if (loggedInBox) loggedInBox.classList.add('hidden');
+            }
+        }
+
+        async function saveCustomerToSheet(customer) {
+            if (!customer || !customer.email) return false;
+            try {
+                await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({
+                        action: 'register_customer',
+                        name: customer.name || '',
+                        email: customer.email,
+                        picture: '',
+                        google_id: ''
+                    })
+                });
+                return true;
+            } catch (err) {
+                console.error('Customer save error:', err);
+                return false;
+            }
+        }
+
+        async function registerSimpleAccount() {
+            const nameInput = document.getElementById('account-name-input');
+            const emailInput = document.getElementById('account-email-input');
+            const errEl = document.getElementById('account-error-msg');
+            const saveBtn = document.getElementById('save-account-btn');
+
+            const name = String(nameInput?.value || '').trim();
+            const email = String(emailInput?.value || '').trim().toLowerCase();
+
+            if (!email || !email.includes('@') || !email.includes('.')) {
+                if (errEl) {
+                    errEl.textContent = 'يرجى إدخال بريد إلكتروني صحيح.';
+                    errEl.classList.remove('hidden');
+                }
+                emailInput?.focus();
+                return;
+            }
+
+            if (errEl) errEl.classList.add('hidden');
+
+            const registeredList = getRegisteredEmailsList();
+            const alreadyRegistered = registeredList.includes(email)
+                || (currentCustomer && currentCustomer.email && currentCustomer.email.toLowerCase() === email);
+
+            if (alreadyRegistered) {
+                if (errEl) {
+                    errEl.textContent = 'هذا البريد الإلكتروني مسجل مسبقاً لدينا.';
+                    errEl.classList.remove('hidden');
+                }
+                currentCustomer = {
+                    name: name || (currentCustomer && currentCustomer.email === email ? currentCustomer.name : ''),
+                    email: email
+                };
+                persistCustomer(currentCustomer);
+                updateAccountUI('هذا البريد الإلكتروني مسجل مسبقاً لدينا.');
+                return;
+            }
+
+            if (saveBtn) {
+                saveBtn.disabled = true;
+                saveBtn.textContent = 'جاري التأكيد...';
+            }
+
+            currentCustomer = {
+                name: name,
+                email: email
+            };
+
+            persistCustomer(currentCustomer);
+            markEmailAsRegistered(email);
+            await saveCustomerToSheet(currentCustomer);
+
+            updateAccountUI('تم تسجيل بريدك الإلكتروني بنجاح، ستصلك أحدث العروض قريباً.');
+
+            if (saveBtn) {
+                saveBtn.disabled = false;
+                saveBtn.textContent = 'تأكيد تسجيل الحساب';
+            }
+        }
+
+        function signOutGoogleAccount() {
+            currentCustomer = null;
+            persistCustomer(null);
+            const emailInput = document.getElementById('account-email-input');
+            const nameInput = document.getElementById('account-name-input');
+            if (emailInput) emailInput.value = '';
+            if (nameInput) nameInput.value = '';
+            updateAccountUI('');
+        }
+
+        function toggleAccountModal() {
+            const modal = document.getElementById('account-modal');
+            if (!modal) return;
+            const willOpen = modal.classList.contains('hidden');
+            modal.classList.toggle('hidden', !willOpen);
+            modal.classList.toggle('flex', willOpen);
+            if (willOpen) {
+                const errEl = document.getElementById('account-error-msg');
+                if (errEl) errEl.classList.add('hidden');
+                currentCustomer = loadSavedCustomer() || currentCustomer;
+                updateAccountUI();
+            }
+        }
+
+        // --- السلة والطلب ---
+        let cart = [];
+        try {
+            const savedCart = JSON.parse(sessionStorage.getItem('zill_cart_v1') || '[]');
+            if (Array.isArray(savedCart)) cart = savedCart;
+        } catch (e) {
+            cart = [];
+        }
+        let shippingOptions = [];
+        let promoCodesList = [];
+        let appliedPromo = null;
+
+        function parseDiscountPercent(rawVal) {
+            if (rawVal === undefined || rawVal === null) return 0;
+            const cleaned = String(rawVal).replace('%', '').trim();
+            if (!cleaned) return 0;
+            const num = parseFloat(cleaned);
+            if (!Number.isFinite(num) || num <= 0) return 0;
+            if (num > 0 && num < 1) return Math.min(100, num * 100);
+            return Math.min(100, num);
+        }
+
+        function parseOptionalLimitNumber(rawVal) {
+            if (rawVal === undefined || rawVal === null || String(rawVal).trim() === '') return null;
+            const num = Number(String(rawVal).trim());
+            if (!Number.isFinite(num) || num <= 0) return null;
+            return Math.floor(num);
+        }
+
+        function parseUsedCountNumber(rawVal) {
+            if (rawVal === undefined || rawVal === null || String(rawVal).trim() === '') return 0;
+            const num = Number(String(rawVal).trim());
+            if (!Number.isFinite(num) || num < 0) return 0;
+            return Math.floor(num);
+        }
+
+        function isPromoExhausted(promoItem) {
+            if (!promoItem) return false;
+            if (promoItem.maxUses !== null && promoItem.maxUses !== undefined && promoItem.maxUses > 0) {
+                return (Number(promoItem.usedCount) || 0) >= promoItem.maxUses;
+            }
+            return false;
+        }
+
+        function extractPromoCodes(data) {
+            const rawList = data?.promo_codes
+                || data?.promocodes
+                || data?.promoCodes
+                || data?.coupons
+                || data?.discounts
+                || data?.codes
+                || [];
+            if (!Array.isArray(rawList)) return [];
+            return rawList
+                .map(row => {
+                    if (!row) return null;
+                    if (Array.isArray(row)) {
+                        const code = String(row[0] || '').trim();
+                        const pct = parseDiscountPercent(row[1]);
+                        const activeRaw = row[2];
+                        const isInactive = activeRaw !== undefined && activeRaw !== '' &&
+                            ['false', 'off', 'inactive', '0', 'no', 'لا'].includes(String(activeRaw).trim().toLowerCase());
+                        if (!code || pct <= 0 || isInactive) return null;
+                        const maxUses = parseOptionalLimitNumber(row[3]);
+                        const usedCount = parseUsedCountNumber(row[4]);
+                        return { code, percent: pct, maxUses, usedCount };
+                    }
+                    if (typeof row === 'object') {
+                        const code = String(row.code ?? row.promo ?? row.promo_code ?? row.coupon ?? row.name ?? '').trim();
+                        const pct = parseDiscountPercent(
+                            row.discount ?? row.percent ?? row.percentage ?? row.off ?? row.rate ?? row.value ?? ''
+                        );
+                        const activeRaw = row.active ?? row.status ?? row.enabled ?? '';
+                        const isInactive = activeRaw !== '' &&
+                            ['false', 'off', 'inactive', 'disabled', '0', 'no', 'لا'].includes(String(activeRaw).trim().toLowerCase());
+                        if (!code || pct <= 0 || isInactive) return null;
+                        const maxUses = parseOptionalLimitNumber(
+                            row.max_uses ?? row.maxUses ?? row.usage_limit ?? row.limit ?? row.max_count ?? ''
+                        );
+                        const usedCount = parseUsedCountNumber(
+                            row.used_count ?? row.usedCount ?? row.uses ?? row.used ?? 0
+                        );
+                        return { code, percent: pct, maxUses, usedCount };
+                    }
+                    return null;
+                })
+                .filter(Boolean);
+        }
+
+        function showPromoMessage(text, isSuccess) {
+            const el = document.getElementById('promo-status-msg');
+            if (!el) return;
+            if (!text) {
+                el.textContent = '';
+                el.classList.add('hidden');
+                return;
+            }
+            el.textContent = text;
+            el.className = `text-[11px] mt-1.5 font-semibold ${isSuccess ? 'text-emerald-700' : 'text-red-500'}`;
+            el.classList.remove('hidden');
+        }
+
+        function onPromoInputChange() {
+            const input = document.getElementById('promo-code-input');
+            const typed = String(input?.value || '').trim().toLowerCase();
+            if (appliedPromo && appliedPromo.code.toLowerCase() !== typed) {
+                appliedPromo = null;
+                showPromoMessage('', false);
+                updateCartUI();
+            } else if (!typed) {
+                appliedPromo = null;
+                showPromoMessage('', false);
+                updateCartUI();
+            }
+        }
+
+        function applyPromoCode() {
+            const input = document.getElementById('promo-code-input');
+            const rawCode = String(input?.value || '').trim();
+            if (!rawCode) {
+                appliedPromo = null;
+                showPromoMessage('اكتب كود الخصم الأول أو سيب الخانة فاضية وأكد الاوردر عادي.', false);
+                updateCartUI();
+                return;
+            }
+
+            const matched = promoCodesList.find(item => item.code.toLowerCase() === rawCode.toLowerCase());
+            if (!matched) {
+                appliedPromo = null;
+                showPromoMessage('كود الخصم غير صحيح أو غير متاح.', false);
+                updateCartUI();
+                return;
+            }
+
+            if (isPromoExhausted(matched)) {
+                appliedPromo = null;
+                showPromoMessage('تم انتهاء عدد مرات الاستخدام المسموح بها لهذا الكود.', false);
+                updateCartUI();
+                return;
+            }
+
+            appliedPromo = {
+                code: matched.code,
+                percent: matched.percent,
+                maxUses: matched.maxUses,
+                usedCount: matched.usedCount
+            };
+            const remainingText = (matched.maxUses !== null && matched.maxUses > 0)
+                ? ` (متبقي ${Math.max(0, matched.maxUses - matched.usedCount)} استخدام)`
+                : '';
+            showPromoMessage(`تم تطبيق كود (${matched.code}) بخصم ${matched.percent}%${remainingText}`, true);
+            updateCartUI();
+        }
+
+        function getItemDiscountUnitPrice(item) {
+            const prodObj = allProducts.find(p => String(p.id) === String(item.id));
+            const oldPrice = Number(item.old_price ?? prodObj?.old_price ?? 0) || 0;
+            const currentPrice = Number(item.price) || 0;
+            return oldPrice > 0 ? oldPrice : currentPrice;
+        }
+
+        function calculateOrderTotals() {
+            const subtotal = cart.reduce((sum, item) => sum + (Number(item.price) || 0) * item.quantity, 0);
+            const discountBaseSubtotal = cart.reduce(
+                (sum, item) => sum + getItemDiscountUnitPrice(item) * item.quantity,
+                0
+            );
+            const discountPercent = appliedPromo ? (Number(appliedPromo.percent) || 0) : 0;
+            const discountAmount = discountBaseSubtotal > 0 && discountPercent > 0
+                ? Math.round((discountBaseSubtotal * discountPercent) / 100)
+                : 0;
+            const discountedSubtotal = appliedPromo && discountAmount > 0
+                ? Math.max(0, discountBaseSubtotal - discountAmount)
+                : subtotal;
+            const shippingFee = getShippingFee();
+            const total = discountedSubtotal + shippingFee;
+            return {
+                subtotal,
+                discountBaseSubtotal,
+                discountPercent,
+                discountAmount,
+                discountedSubtotal,
+                shippingFee,
+                total
+            };
+        }
+
+        function addToCart(id, name, price, size) {
+            if (!size) { alert('من فضلك اختار المقاس الأول.'); return; }
+            const prodObj = allProducts.find(p => String(p.id) === String(id));
+            const oldPriceVal = Number(prodObj?.old_price) || 0;
+            let existingItem = cart.find(item => String(item.id) === String(id) && item.size === size);
+            if (existingItem) {
+                existingItem.quantity += 1;
+                if (oldPriceVal > 0 && !(Number(existingItem.old_price) > 0)) {
+                    existingItem.old_price = oldPriceVal;
+                }
+            } else {
+                cart.push({
+                    id,
+                    name,
+                    price: parseFloat(price) || 0,
+                    old_price: oldPriceVal,
+                    size,
+                    quantity: 1
+                });
+            }
+            updateCartUI();
+            closeProductDetails();
+            const toastModal = document.getElementById('toast-modal'); toastModal.classList.remove('hidden'); toastModal.classList.add('flex');
+        }
+
+        function closeToast() { const toastModal = document.getElementById('toast-modal'); toastModal.classList.add('hidden'); toastModal.classList.remove('flex'); }
+        function closeToastAndGoCart() { closeToast(); toggleCartModal(); }
+
+        function getShippingFee() {
+            const select = document.getElementById('customer-governorate');
+            return select ? (parseFloat(select.value) || 0) : 0;
+        }
+
+        function updateAddressPlaceholder() {
+            const govSelect = document.getElementById('customer-governorate');
+            const addressInput = document.getElementById('customer-address');
+            const addressLabel = document.getElementById('address-label');
+
+            if (govSelect && addressInput) {
+                const selectedOption = govSelect.options[govSelect.selectedIndex];
+                const govName = (selectedOption?.dataset.governorate || selectedOption?.textContent || '').trim();
+
+                if (govName.includes('مترو')) {
+                    if (addressLabel) addressLabel.textContent = 'أدخل محطتك';
+                    addressInput.placeholder = 'أدخل محطتك (اسم محطة المترو)...';
+                } else {
+                    if (addressLabel) addressLabel.textContent = 'أدخل عنوانك';
+                    addressInput.placeholder = 'أدخل عنوانك (المدينة، الشارع...)';
+                }
+            }
+        }
+
+        function updateCartUI() {
+            try {
+                sessionStorage.setItem('zill_cart_v1', JSON.stringify(cart));
+            } catch (e) {}
+            updateAddressPlaceholder();
+            document.getElementById('cart-count').innerText = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const container = document.getElementById('cart-items-container');
+
+            const discountRow = document.getElementById('discount-row');
+            const discountLabel = document.getElementById('discount-label');
+            const discountAmountEl = document.getElementById('discount-amount');
+
+            if (cart.length === 0) {
+                appliedPromo = null;
+                showPromoMessage('', false);
+                container.innerHTML = `<p class="text-center text-neutral-400 py-6 text-xs">سلة الطلبات فارغة حالياً.</p>`;
+                document.getElementById('products-subtotal').innerText = '0 EGP';
+                if (discountRow) {
+                    discountRow.classList.add('hidden');
+                    discountRow.classList.remove('flex');
+                }
+                document.getElementById('shipping-cost').innerText = '0 EGP';
+                document.getElementById('cart-total').innerText = '0 EGP';
+                return;
+            }
+
+            container.innerHTML = cart.map((item, index) => `
+                <div class="py-2.5 flex justify-between items-center gap-3 text-xs">
+                    <div class="min-w-0 flex-1">
+                        <p class="font-bold text-neutral-900 truncate">${escapeHTML(item.name)}</p>
+                        <p class="text-neutral-500 mt-0.5">المقاس: <span class="font-semibold text-neutral-700">${escapeHTML(item.size)}</span> · ${item.price} EGP × ${item.quantity}</p>
+                    </div>
+                    <button type="button" data-remove-index="${index}" class="text-red-500 hover:text-red-700 hover:underline shrink-0 px-2 py-1">حذف</button>
+                </div>
+            `).join('');
+
+            const totals = calculateOrderTotals();
+            document.getElementById('products-subtotal').innerText = totals.subtotal + ' EGP';
+            if (discountRow && discountLabel && discountAmountEl) {
+                if (appliedPromo && totals.discountAmount > 0) {
+                    discountLabel.textContent = `الخصم (${appliedPromo.code} - ${appliedPromo.percent}%):`;
+                    discountAmountEl.textContent = `-${totals.discountAmount} EGP`;
+                    discountRow.classList.remove('hidden');
+                    discountRow.classList.add('flex');
+                } else {
+                    discountRow.classList.add('hidden');
+                    discountRow.classList.remove('flex');
+                }
+            }
+            document.getElementById('shipping-cost').innerText = totals.shippingFee + ' EGP';
+            document.getElementById('cart-total').innerText = totals.total + ' EGP';
+        }
+
+        function jsLiteral(value) {
+            return JSON.stringify(String(value ?? '')).replace(/'/g, '\\u0027');
+        }
+
+        function escapeHTML(value) {
+            return String(value ?? '').replace(/[&<>"']/g, char => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            }[char]));
+        }
+
+        function removeFromCart(idOrIndex, size) {
+            if (typeof idOrIndex === 'number' && size === undefined) {
+                cart.splice(idOrIndex, 1);
+            } else {
+                cart = cart.filter(item => !(String(item.id) === String(idOrIndex) && item.size === size));
+            }
+            updateCartUI();
+        }
+
+        document.addEventListener('click', (event) => {
+            const removeBtn = event.target.closest('[data-remove-index]');
+            if (removeBtn) {
+                const idx = Number(removeBtn.getAttribute('data-remove-index'));
+                if (!Number.isNaN(idx) && idx >= 0 && idx < cart.length) {
+                    cart.splice(idx, 1);
+                    updateCartUI();
+                }
+            }
+        });
+
+        function toggleCartModal() {
+            const modal = document.getElementById('cart-modal');
+            const willOpen = modal.classList.contains('hidden');
+            modal.classList.toggle('hidden', !willOpen);
+            modal.classList.toggle('flex', willOpen);
+            if (willOpen) updateCartUI();
+        }
+
+        function sanitizePhoneInput(inputEl) {
+            if (!inputEl) return;
+            const digitsOnly = String(inputEl.value || '').replace(/[^0-9]/g, '').slice(0, 11);
+            if (inputEl.value !== digitsOnly) {
+                inputEl.value = digitsOnly;
+            }
+        }
+
+        async function confirmOrder() {
+            if (cart.length === 0) {
+                alert('السلة فارغة!');
+                return;
+            }
+
+            const name = document.getElementById('customer-name').value.trim();
+            const phone = document.getElementById('customer-phone').value.trim();
+            const govSelect = document.getElementById('customer-governorate');
+            const gov = govSelect.value;
+            const governorateName = govSelect.options[govSelect.selectedIndex]?.dataset.governorate
+                || govSelect.options[govSelect.selectedIndex]?.textContent.trim() || '';
+            const address = document.getElementById('customer-address').value.trim();
+
+            if (!name || !phone || gov === '0' || !address) {
+                alert('يرجى ملء كافة بيانات الشحن واختيار المحافظة.');
+                return;
+            }
+
+            const cleanPhone = phone.replace(/[^0-9]/g, '');
+            if (cleanPhone.length !== 11) {
+                alert('في مشكلة في رقم الهاتف: يجب أن يتكون من 11 رقماً.');
+                document.getElementById('customer-phone')?.focus();
+                return;
+            }
+
+            const promoInputEl = document.getElementById('promo-code-input');
+            const rawPromoTyped = String(promoInputEl?.value || '').trim();
+            if (rawPromoTyped && (!appliedPromo || appliedPromo.code.toLowerCase() !== rawPromoTyped.toLowerCase())) {
+                const matchedPromo = promoCodesList.find(item => item.code.toLowerCase() === rawPromoTyped.toLowerCase());
+                if (matchedPromo) {
+                    if (isPromoExhausted(matchedPromo)) {
+                        appliedPromo = null;
+                        alert('تم انتهاء عدد مرات الاستخدام المسموح بها لهذا الكود.');
+                        return;
+                    }
+                    appliedPromo = {
+                        code: matchedPromo.code,
+                        percent: matchedPromo.percent,
+                        maxUses: matchedPromo.maxUses,
+                        usedCount: matchedPromo.usedCount
+                    };
+                    showPromoMessage(`تم تطبيق كود (${matchedPromo.code}) بخصم ${matchedPromo.percent}%`, true);
+                } else {
+                    alert('كود الخصم المكتوب غير صحيح. عدّله أو امسحه لتأكيد الطلب بدون خصم.');
+                    return;
+                }
+            }
+
+            const totals = calculateOrderTotals();
+            const orderItems = cart.map(item => ({
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                size: item.size,
+                quantity: item.quantity
+            }));
+
+            const confirmButton = document.querySelector('#cart-modal button[onclick="confirmOrder()"]');
+            if (confirmButton) {
+                confirmButton.disabled = true;
+                confirmButton.textContent = 'جاري إرسال الطلب...';
+            }
+
+            try {
+                await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({
+                        customer_name: name,
+                        phone: cleanPhone,
+                        governorate: governorateName,
+                        address: address,
+                        promo_code: appliedPromo ? appliedPromo.code : '',
+                        discount_percent: appliedPromo ? appliedPromo.percent : 0,
+                        discount_amount: totals.discountAmount,
+                        discount_base_subtotal: totals.discountBaseSubtotal,
+                        items: JSON.stringify({
+                            products: orderItems,
+                            subtotal: totals.subtotal,
+                            discount_base_subtotal: totals.discountBaseSubtotal,
+                            promo_code: appliedPromo ? appliedPromo.code : '',
+                            discount_percent: appliedPromo ? appliedPromo.percent : 0,
+                            discount_amount: totals.discountAmount,
+                            shipping: totals.shippingFee
+                        }),
+                        total: totals.total
+                    })
+                });
+
+                if (appliedPromo) {
+                    const usedItem = promoCodesList.find(p => p.code.toLowerCase() === appliedPromo.code.toLowerCase());
+                    if (usedItem) {
+                        usedItem.usedCount = (Number(usedItem.usedCount) || 0) + 1;
+                    }
+                }
+                alert(`تم إرسال طلبك يا ${name}. سنتواصل معك قريباً لتأكيد الطلب.`);
+                cart = [];
+                appliedPromo = null;
+                try { sessionStorage.removeItem('zill_cart_v1'); } catch (e) {}
+                document.getElementById('customer-name').value = '';
+                document.getElementById('customer-phone').value = '';
+                document.getElementById('customer-governorate').value = '0';
+                document.getElementById('customer-address').value = '';
+                if (promoInputEl) promoInputEl.value = '';
+                showPromoMessage('', false);
+                updateCartUI();
+                const cartModal = document.getElementById('cart-modal'); cartModal.classList.add('hidden'); cartModal.classList.remove('flex');
+            } catch (error) {
+                console.error('Order submission error:', error);
+                alert('حصلت مشكلة في إرسال الطلب. راجع اتصال الإنترنت وحاول مرة أخرى.');
+            } finally {
+                if (confirmButton) {
+                    confirmButton.disabled = false;
+                    confirmButton.textContent = 'تأكيد الاوردر ✅';
+                }
+            }
+        }
+
+        // --- ربط Google Sheets ---
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzDxwMRuOJk8QnRQfOekAJ0H313yC59pyUlb3FV9oZjQAR775_aoHAaRl34PkNsv1Tk/exec';
+        let allProducts = [];
+        let activeCategory = 'All';
+        let categoryStatesMap = {};
+        let activeOffers = [];
+        window.slideIndices = {};
+
+        function isArabicText(text) {
+            const cleaned = String(text || '').replace(/^[\s«"'(“‘\[\]✦•\-–—]+/, '');
+            return /^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/.test(cleaned);
+        }
+
+        function renderOffersBar(offers) {
+            const bar = document.getElementById('offers-bar');
+            const track = document.getElementById('offers-track');
+            if (!bar || !track) return;
+
+            const validOffers = (Array.isArray(offers) ? offers : [])
+                .filter(item => {
+                    if (!item || !String(item.text || '').trim()) return false;
+                    const v = item.active;
+                    return v === true || v === 1 || String(v).trim().toLowerCase() === 'true';
+                })
+                .sort((a, b) => (Number(a.order) || 0) - (Number(b.order) || 0));
+
+            activeOffers = validOffers;
+
+            if (!validOffers.length) {
+                track.innerHTML = '';
+                bar.style.display = 'none';
+                return;
+            }
+
+            const firstText = String(validOffers[0].text || '').trim();
+            const arabicFirst = isArabicText(firstText);
+
+            const items = validOffers.map(item =>
+                `<span class="offer-item"><span>${escapeHTML(String(item.text))}</span></span>`
+            ).join('');
+
+            track.innerHTML = items + items;
+            bar.style.display = 'block';
+            track.style.animationName = arabicFirst ? 'zillOffersLTR' : 'zillOffersRTL';
+            track.style.animationDuration = (validOffers.length === 1 ? 18 : Math.min(30, 14 + validOffers.length * 4)) + 's';
+        }
+
+        function sanitizeBgColor(colorValue) {
+            const raw = String(colorValue || '').trim();
+            if (!raw) return '#ffffff';
+            const withHash = /^[0-9a-fA-F]{3,8}$/.test(raw) ? '#' + raw : raw;
+            const probe = document.createElement('div');
+            probe.style.backgroundColor = '';
+            probe.style.backgroundColor = withHash;
+            return probe.style.backgroundColor ? withHash : '#ffffff';
+        }
+
+        function normalizeProduct(product) {
+            const imageValue = product.image_url || '';
+            const images = Array.isArray(imageValue)
+                ? imageValue
+                : String(imageValue).split(/[,;\n]/).map(url => url.trim()).filter(Boolean);
+
+            const rawBg = product.color_background
+                ?? product.background_color
+                ?? product.bg_color
+                ?? product.background
+                ?? '#ffffff';
+
+            const safeId = (product.id !== undefined && product.id !== null && String(product.id).trim() !== '')
+                ? product.id
+                : (product.name || ('item-' + Math.random().toString(36).slice(2, 8)));
+
+            return {
+                id: safeId,
+                name: product.name || 'منتج بدون اسم',
+                price: Number(product.price) || 0,
+                old_price: Number(product.old_price) || 0,
+                sizes: product.sizes || '',
+                stock_alert: product.stock_alert || '',
+                category: String(product.category || 'Hoodies').trim() || 'Hoodies',
+                images: images.join(','),
+                bg_color: sanitizeBgColor(rawBg),
+                description: product.description || ''
+            };
+        }
+
+        function populateShipping(shippingRows) {
+            const select = document.getElementById('customer-governorate');
+            if (!Array.isArray(shippingRows) || shippingRows.length === 0) return;
+
+            shippingOptions = shippingRows;
+            select.innerHTML = '<option value="0">اختر المحافظة...</option>' + shippingRows.map(row => {
+                const governorate = String(row.governorate || '').trim();
+                const cost = Number(row.cost) || 0;
+                return `<option value="${cost}" data-governorate="${escapeHTML(governorate)}">${escapeHTML(governorate)} (${cost} EGP)</option>`;
+            }).join('');
+            updateCartUI();
+        }
+
+        function parseCategoryStatus(rawState) {
+            const st = String(rawState || '').trim().toLowerCase();
+            if (!st) return 'active';
+            if (['false', 'off', 'out', 'out of stock', 'hidden', 'disable', 'disabled', '0', 'no'].includes(st)) {
+                return 'hidden';
+            }
+            if (st.includes('soon') || st.includes('coming') || st.includes('قريب')) {
+                return 'coming_soon';
+            }
+            if (['active', 'true', 'on', 'available', 'open', '1', 'yes'].includes(st)) {
+                return 'active';
+            }
+            return 'active';
+        }
+
+        function extractSheetCategories(rawCategories) {
+            if (!Array.isArray(rawCategories)) return [];
+            return rawCategories
+                .map(row => {
+                    if (!row) return null;
+                    if (typeof row === 'string') {
+                        const name = row.trim();
+                        if (!name || ['category', 'categories', 'القسم', 'التصنيف', 'الأقسام', 'التصنيفات'].includes(name.toLowerCase())) {
+                            return null;
+                        }
+                        return { name, mode: 'active' };
+                    }
+                    const rawState = String(row.state ?? row.status ?? row.State ?? row.Status ?? '').trim();
+                    let name = String(row.category ?? row.name ?? row.title ?? row.Category ?? row.Name ?? '').trim();
+                    if (!name) {
+                        const keys = Object.keys(row).filter(k => !['state', 'status'].includes(k.toLowerCase()));
+                        if (keys.length) {
+                            const candidate = String(row[keys[0]] ?? '').trim();
+                            if (candidate && !['category', 'categories', 'القسم', 'التصنيف', 'الأقسام', 'التصنيفات'].includes(candidate.toLowerCase())) {
+                                name = candidate;
+                            }
+                        }
+                    }
+                    if (!name) return null;
+                    return { name, mode: parseCategoryStatus(rawState) };
+                })
+                .filter(item => item && item.name);
+        }
+
+        function readCachedStore() {
+            const cacheKey = 'zill_store_cache_v1';
+            for (const store of [sessionStorage, localStorage]) {
+                try {
+                    const raw = store.getItem(cacheKey);
+                    if (raw) {
+                        const parsed = JSON.parse(raw);
+                        if (parsed && Array.isArray(parsed.products)) return parsed;
+                    }
+                } catch (e) {}
+            }
+            return null;
+        }
+
+        function writeCachedStore(data) {
+            const cacheKey = 'zill_store_cache_v1';
+            const serialized = JSON.stringify(data);
+            try { sessionStorage.setItem(cacheKey, serialized); } catch (e) {}
+            try { localStorage.setItem(cacheKey, serialized); } catch (e) {}
+        }
+
+        function applyStoreData(data) {
+            allProducts = (Array.isArray(data.products) ? data.products : []).map(normalizeProduct);
+            const hasCategoriesTab = Array.isArray(data.categories);
+            const sheetCats = hasCategoriesTab ? extractSheetCategories(data.categories) : [];
+            categoryStatesMap = {};
+            sheetCats.forEach(item => {
+                categoryStatesMap[item.name.toLowerCase()] = item.mode;
+            });
+
+            if (activeCategory.toLowerCase() !== 'all' && categoryStatesMap[activeCategory.toLowerCase()] === 'hidden') {
+                activeCategory = 'All';
+            }
+
+            promoCodesList = extractPromoCodes(data);
+            setupCategories(allProducts, sheetCats, hasCategoriesTab);
+            filterProducts();
+            populateShipping(data.shipping);
+            renderOffersBar(data.offers);
+            if (appliedPromo) {
+                const stillValid = promoCodesList.find(item => item.code.toLowerCase() === appliedPromo.code.toLowerCase());
+                if (stillValid && !isPromoExhausted(stillValid)) {
+                    appliedPromo = {
+                        code: stillValid.code,
+                        percent: stillValid.percent,
+                        maxUses: stillValid.maxUses,
+                        usedCount: stillValid.usedCount
+                    };
+                } else {
+                    appliedPromo = null;
+                    showPromoMessage(stillValid ? 'تم انتهاء عدد مرات الاستخدام المسموح بها لهذا الكود.' : '', false);
+                }
+                updateCartUI();
+            }
+        }
+
+        async function fetchProducts() {
+            const grid = document.getElementById('products-grid');
+            const cachedData = readCachedStore();
+            if (cachedData) {
+                applyStoreData(cachedData);
+            }
+
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 9000);
+
+            try {
+                const response = await fetch(`${WEB_APP_URL}?t=${Date.now()}`, {
+                    signal: controller.signal,
+                    cache: 'no-store'
+                });
+                clearTimeout(timeoutId);
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                const data = await response.json();
+                try {
+                    sessionStorage.removeItem('zill_store_cache_v1');
+                    localStorage.removeItem('zill_store_cache_v1');
+                } catch (e) {}
+                writeCachedStore(data);
+                applyStoreData(data);
+            } catch (error) {
+                clearTimeout(timeoutId);
+                console.error('خطأ في جلب بيانات Google Sheets:', error);
+                if (!allProducts.length && grid) {
+                    setupCategories(allProducts);
+                    grid.innerHTML = `<p class="col-span-3 text-center text-neutral-400 py-12">تعذر تحميل المنتجات من المتجر. حاول تحديث الصفحة بعد قليل.</p>`;
+                }
+            }
+        }
+
+        function setupCategories(products, sheetCategories = [], hasCategoriesTab = false) {
+            const container = document.getElementById('categories-container');
+            if (!container) return;
+            const productCats = products.map(p => String(p.category || '').trim()).filter(Boolean);
+            const merged = ['All'];
+
+            sheetCategories.forEach(item => {
+                if (item.mode === 'hidden') return;
+                if (!merged.some(existing => existing.toLowerCase() === item.name.toLowerCase())) {
+                    merged.push(item.name);
+                }
+            });
+
+            productCats.forEach(cat => {
+                const mode = categoryStatesMap[cat.toLowerCase()] || 'active';
+                if (mode === 'hidden') return;
+                if (!merged.some(existing => existing.toLowerCase() === cat.toLowerCase())) {
+                    merged.push(cat);
+                }
+            });
+
+            const activeNorm = String(activeCategory || 'All').trim().toLowerCase();
+            container.innerHTML = merged.map(cat => {
+                const isSelected = String(cat).trim().toLowerCase() === activeNorm;
+                return `
+                    <button type="button" data-category="${escapeHTML(cat)}" class="category-btn shrink-0 whitespace-nowrap relative z-20 cursor-pointer px-5 py-2 rounded-full text-xs font-semibold ${isSelected ? 'bg-black text-white' : 'bg-white text-neutral-800 border border-neutral-300'} transition">
+                        ${escapeHTML(cat)}
+                    </button>
+                `;
+            }).join('');
+
+            container.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const catName = btn.dataset.category || btn.textContent.trim();
+                    filterCategory(catName);
+                });
+            });
+        }
+
+        function filterCategory(category) {
+            const cleanCat = String(category ?? 'All').trim() || 'All';
+            if (cleanCat.toLowerCase() !== 'all' && categoryStatesMap[cleanCat.toLowerCase()] === 'hidden') {
+                return;
+            }
+            activeCategory = cleanCat;
+            const targetNorm = cleanCat.toLowerCase();
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                const btnVal = String(btn.dataset.category ?? btn.innerText ?? '').trim().toLowerCase();
+                const isSelected = btnVal === targetNorm;
+                btn.className = isSelected
+                    ? 'category-btn shrink-0 whitespace-nowrap px-5 py-2 rounded-full text-xs font-semibold bg-black text-white transition'
+                    : 'category-btn shrink-0 whitespace-nowrap px-5 py-2 rounded-full text-xs font-semibold bg-white text-neutral-800 border border-neutral-300 transition';
+            });
+            filterProducts();
+        }
+
+        function filterProducts() {
+            const searchText = (document.getElementById('search-input')?.value || '').toLowerCase().trim();
+            const selectedCat = String(activeCategory || 'All').trim().toLowerCase();
+
+            if (selectedCat !== 'all' && categoryStatesMap[selectedCat] === 'coming_soon' && !searchText) {
+                const grid = document.getElementById('products-grid');
+                if (grid) {
+                    grid.innerHTML = `<p class="col-span-full text-center text-neutral-500 py-14 text-sm font-semibold">هيتوفر قريباً</p>`;
+                }
+                return;
+            }
+
+            const filtered = allProducts.filter(product => {
+                const prodCat = String(product.category || '').trim().toLowerCase();
+                if (categoryStatesMap[prodCat] === 'hidden') return false;
+                const matchesCat = selectedCat === 'all' || prodCat === selectedCat;
+                const matchesSearch = String(product.name || '').toLowerCase().includes(searchText)
+                    || String(product.description || '').toLowerCase().includes(searchText);
+                return matchesCat && matchesSearch;
+            });
+            displayProducts(filtered);
+        }
+
+        function displayProducts(productsToDisplay) {
+            const grid = document.getElementById('products-grid');
+            if (productsToDisplay.length === 0) {
+                const selectedCat = String(activeCategory || 'All').trim().toLowerCase();
+                const msg = (selectedCat !== 'all' && categoryStatesMap[selectedCat] === 'coming_soon')
+                    ? 'هيتوفر قريباً'
+                    : 'لا توجد منتجات مطابقة للبحث أو القسم المختار.';
+                grid.innerHTML = `<p class="col-span-full text-center text-neutral-400 py-12">${msg}</p>`;
+                return;
+            }
+
+            grid.innerHTML = productsToDisplay.map(product => {
+                const imageList = product.images ? product.images.split(',').map(url => url.trim()).filter(Boolean) : [];
+                const slideKey = encodeURIComponent(String(product.id));
+                if (window.slideIndices[slideKey] === undefined) window.slideIndices[slideKey] = 0;
+                const currentIndex = window.slideIndices[slideKey];
+                const bgColor = escapeHTML(product.bg_color || '#ffffff');
+                const imageHTML = imageList.length
+                    ? `<img id="img-${slideKey}" src="${escapeHTML(imageList[currentIndex] || imageList[0])}" loading="lazy" decoding="async" class="slide-img w-full h-full object-contain p-2" alt="${escapeHTML(product.name)}">`
+                    : `<div class="w-full h-full flex items-center justify-center text-neutral-400 text-xs">الصورة غير متاحة</div>`;
+
+                const priceHTML = product.old_price > product.price
+                    ? `<div class="flex items-center gap-2">
+                           <span class="font-bold text-sm">${product.price} EGP</span>
+                           <span class="text-xs text-neutral-400 line-through">${product.old_price} EGP</span>
+                       </div>`
+                    : `<span class="font-bold text-sm">${product.price} EGP</span>`;
+
+                return `
+                    <div data-product-card="${slideKey}" class="bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-neutral-200/60 flex flex-col justify-between">
+                        <div class="relative w-full h-64 md:h-72 rounded-xl overflow-hidden mb-4 group border border-neutral-100" style="background-color: ${bgColor};">
+                            ${imageHTML}
+                            ${imageList.length > 1 ? `
+                                <button onclick='changeSlide(${jsLiteral(product.id)}, -1)' class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/85 hover:bg-white px-2 py-1 rounded-full text-xs shadow transition">❮</button>
+                                <button onclick='changeSlide(${jsLiteral(product.id)}, 1)' class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/85 hover:bg-white px-2 py-1 rounded-full text-xs shadow transition">❯</button>
+                            ` : ''}
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-neutral-400 brand-font">${escapeHTML(product.category)}</span>
+                            <h3 class="brand-font text-base font-semibold mt-1">${escapeHTML(product.name)}</h3>
+                        </div>
+                        <div class="flex justify-between items-center mt-6 pt-4 border-t border-neutral-100">
+                            ${priceHTML}
+                            <button onclick='openProductDetails(${jsLiteral(product.id)})' class="bg-black text-white px-4 py-2 rounded-full text-xs font-semibold hover:bg-neutral-800 transition">عرض التفاصيل</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        let selectedDetailProduct = null;
+        let selectedDetailSize = '';
+        let selectedDetailImage = 0;
+
+        function getProductImages(product) {
+            if (!product || !product.images) return [];
+            return String(product.images).split(/[,;\n]/).map(url => url.trim()).filter(Boolean);
+        }
+
+        function getProductSizes(product) {
+            return String(product?.sizes || '').split(/[,;|\n/]+/).map(size => size.trim()).filter(Boolean);
+        }
+
+        function openProductDetails(productId) {
+            const product = allProducts.find(item => String(item.id) === String(productId));
+            if (!product) return;
+            selectedDetailProduct = product;
+            selectedDetailSize = '';
+            selectedDetailImage = 0;
+            document.getElementById('detail-category').textContent = product.category || '';
+            document.getElementById('detail-name').textContent = product.name;
+            document.getElementById('detail-price').innerHTML = product.old_price > product.price
+                ? `${product.price} EGP <span class="text-sm font-normal text-neutral-400 line-through mr-2">${product.old_price} EGP</span>`
+                : `${product.price} EGP`;
+            document.getElementById('detail-description').textContent = product.description || 'لا توجد تفاصيل إضافية لهذا المنتج حالياً.';
+            renderDetailImages();
+            renderDetailSizes();
+            const modal = document.getElementById('product-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProductDetails() {
+            const modal = document.getElementById('product-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        function renderDetailImages() {
+            const images = getProductImages(selectedDetailProduct);
+            const main = document.getElementById('detail-main-image');
+            const thumbs = document.getElementById('detail-thumbnails');
+            const bgColor = escapeHTML(selectedDetailProduct?.bg_color || '#ffffff');
+            main.style.backgroundColor = bgColor;
+            if (!images.length) {
+                main.innerHTML = '<div class="w-full h-full flex items-center justify-center text-neutral-400 text-xs">الصورة غير متاحة</div>';
+                thumbs.innerHTML = '';
+                return;
+            }
+            main.innerHTML = `<img src="${escapeHTML(images[selectedDetailImage] || images[0])}" class="w-full h-full object-contain p-3" alt="${escapeHTML(selectedDetailProduct.name)}">`;
+            thumbs.innerHTML = images.map((url, index) => `<button type="button" onclick="selectDetailImage(${index})" class="w-16 h-20 flex-shrink-0 rounded-lg overflow-hidden border-2 ${index === selectedDetailImage ? 'border-black' : 'border-transparent'}" style="background-color: ${bgColor};"><img src="${escapeHTML(url)}" class="w-full h-full object-contain p-1"></button>`).join('');
+        }
+
+        function selectDetailImage(index) {
+            const images = getProductImages(selectedDetailProduct);
+            if (index < 0 || index >= images.length) return;
+            selectedDetailImage = index;
+            renderDetailImages();
+        }
+
+        function renderDetailSizes() {
+            const sizes = getProductSizes(selectedDetailProduct);
+            const container = document.getElementById('detail-sizes');
+            const hint = document.getElementById('detail-size-hint');
+            const button = document.getElementById('detail-add-button');
+            if (!sizes.length) {
+                container.innerHTML = '';
+                hint.textContent = 'المقاسات غير مضافة لهذا المنتج. أضفها في عمود المقاسات داخل Google Sheets.';
+                button.disabled = true;
+                button.classList.add('opacity-40', 'cursor-not-allowed');
+                return;
+            }
+            hint.textContent = 'لازم تختار مقاس قبل الإضافة للسلة.';
+            button.disabled = true;
+            button.classList.add('opacity-40', 'cursor-not-allowed');
+            container.innerHTML = sizes.map(size => `<button type="button" class="size-option" onclick='selectDetailSize(${jsLiteral(size)})'>${escapeHTML(size)}</button>`).join('');
+        }
+
+        function selectDetailSize(size) {
+            selectedDetailSize = size;
+            document.querySelectorAll('#detail-sizes .size-option').forEach(button => {
+                const selected = button.textContent === size;
+                button.classList.toggle('selected', selected);
+            });
+            document.getElementById('detail-size-hint').textContent = `المقاس المختار: ${size}`;
+            const button = document.getElementById('detail-add-button');
+            button.disabled = false;
+            button.classList.remove('opacity-40', 'cursor-not-allowed');
+        }
+
+        function addSelectedProductToCart() {
+            if (!selectedDetailProduct) return;
+            if (!selectedDetailSize) {
+                alert('من فضلك اختار المقاس الأول.');
+                return;
+            }
+            addToCart(selectedDetailProduct.id, selectedDetailProduct.name, selectedDetailProduct.price, selectedDetailSize);
+        }
+
+        function changeSlide(productId, direction) {
+            const product = allProducts.find(item => String(item.id) === String(productId));
+            if (!product) return;
+            const images = getProductImages(product);
+            if (images.length < 2) return;
+            const slideKey = encodeURIComponent(String(product.id));
+            if (window.slideIndices[slideKey] === undefined) window.slideIndices[slideKey] = 0;
+            window.slideIndices[slideKey] += direction;
+            if (window.slideIndices[slideKey] >= images.length) window.slideIndices[slideKey] = 0;
+            if (window.slideIndices[slideKey] < 0) window.slideIndices[slideKey] = images.length - 1;
+            const nextSrc = images[window.slideIndices[slideKey]];
+            const image = document.getElementById(`img-${slideKey}`)
+                || document.querySelector(`[data-product-card="${slideKey}"] img`);
+            if (image) {
+                image.classList.add('is-swapping');
+                setTimeout(() => {
+                    image.src = nextSrc;
+                    image.onload = () => image.classList.remove('is-swapping');
+                    setTimeout(() => image.classList.remove('is-swapping'), 180);
+                }, 110);
+            }
+        }
+
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeToast();
+                closeProductDetails();
+                const cartModal = document.getElementById('cart-modal');
+                if (cartModal && !cartModal.classList.contains('hidden')) {
+                    cartModal.classList.add('hidden');
+                    cartModal.classList.remove('flex');
+                }
+                const accountModal = document.getElementById('account-modal');
+                if (accountModal && !accountModal.classList.contains('hidden')) {
+                    accountModal.classList.add('hidden');
+                    accountModal.classList.remove('flex');
+                }
+            }
+        });
+
+        window.onload = () => {
+            const introSeenKey = 'zill_intro_seen_v1';
+
+            if (sessionStorage.getItem(introSeenKey) === '1') {
+                const screen = document.getElementById('intro-screen');
+                if (screen) {
+                    screen.style.display = 'none';
+                    screen.style.opacity = '0';
+                }
+            } else {
+                startIntroSequence();
+                sessionStorage.setItem(introSeenKey, '1');
+            }
+
+            const initAllBtn = document.querySelector('#categories-container .category-btn');
+            if (initAllBtn) {
+                initAllBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    filterCategory('All');
+                });
+            }
+            updateAccountUI();
+            updateCartUI();
+            fetchProducts();
+        };
+    </script>
+</body>
+</html>
