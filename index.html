@@ -617,6 +617,12 @@
                     skipIntro();
                 }
             }, 350);
+
+            // Fail-safe: even if an animation/timer is interrupted,
+            // never leave the intro covering the store indefinitely.
+            setTimeout(() => {
+                if (run === introRun) skipIntro();
+            }, 19000);
         }
 
         function startIntroSequence() {
@@ -1385,12 +1391,10 @@
         function splitImageUrls(value) {
             if (Array.isArray(value)) return value.map(url => String(url || '').trim()).filter(Boolean);
             return String(value || '')
-                .split(/[;
-|]+|,(?=\s|https?:\/\/|\/\/|\/|data:|[^,\s\/]+\.(?:jpe?g|png|webp|gif|avif|svg))/i)
+                .split(/[;\n|]+|,(?=\s|https?:\/\/|\/\/|\/|data:|[^,\s\/]+\.(?:jpe?g|png|webp|gif|avif|svg)\b)/i)
                 .map(url => url.trim())
                 .filter(Boolean);
         }
-
         function normalizeProduct(product) {
             const images = splitImageUrls(product.image_url || '');
 
@@ -2078,12 +2082,9 @@
         // (لازم تفضل مطابقة لـ parseSizes_ في Code.gs)
         function getProductSizes(product) {
             const raw = String(product?.sizes ?? '');
-            const parts = /[,،;|
-]/.test(raw) ? raw.split(/[,،;|
-]+/) : raw.split('/');
+            const parts = /[,،;|\n]/.test(raw) ? raw.split(/[,،;|\n]+/) : raw.split('/');
             return parts.map(size => size.trim()).filter(Boolean);
         }
-
         function openProductDetails(productId) {
             const product = allProducts.find(item => String(item.id) === String(productId));
             if (!product) return;
@@ -2290,8 +2291,19 @@
                     screen.style.opacity = '0';
                 }
             } else {
-                startIntroSequence();
-                storeSet('session', introSeenKey, '1');
+                try {
+                    startIntroSequence();
+                    storeSet('session', introSeenKey, '1');
+                } catch (e) {
+                    // If anything in the intro fails, never block the store.
+                    skipIntro();
+                }
+
+                // Absolute fallback: the store must become accessible.
+                setTimeout(() => {
+                    const screen = document.getElementById('intro-screen');
+                    if (screen && screen.style.display !== 'none') skipIntro();
+                }, 19500);
             }
 
             applyThemeButton();
