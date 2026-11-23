@@ -329,6 +329,10 @@
         .fade-text.active .scene-final .big .sh { opacity: .22; transform: translate(.22em, .02em) skewX(calc(-38deg - var(--ba) * .8)); animation: shGrow 2.4s var(--ease) .5s forwards; }
         @keyframes shGrow { from { scale: 1 .2; } to { scale: 1 .9; } }
         @media (prefers-reduced-motion: reduce) { .intro { animation: none; } }
+
+        .foot-copy { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 16px; }
+        .foot-replay { background: none; border: 0; padding: 4px 0; color: inherit; font: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; letter-spacing: 0; text-transform: none; }
+        .foot-replay:hover { color: var(--accent); }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
@@ -518,7 +522,7 @@
             <a href="tel:01042898254" dir="ltr">01042898254</a>
             <a href="https://instagram.com/zillstor.e" target="_blank" rel="noopener noreferrer" dir="ltr">@zillstor.e</a>
         </div>
-        <div class="foot-copy" dir="rtl">© 2026 ZILL · جميع الحقوق محفوظة</div>
+        <div class="foot-copy" dir="rtl"><span>© 2026 ZILL · جميع الحقوق محفوظة</span><button type="button" class="foot-replay" onclick="replayIntro()">↻ إعادة الإنترو</button></div>
     </footer>
 
     <!-- تكبير الصورة -->
