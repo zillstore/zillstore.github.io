@@ -2,10 +2,11 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>ZILL | ظل</title>
     <meta name="description" content="ZILL | ظل — تصفّح أحدث القطع واطلب أونلاين.">
-    <meta name="theme-color" content="#ebe8e1">
+    <meta name="theme-color" content="#0b0b0c">
+    <script>document.documentElement.classList.add('intro-on');</script>
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="ZILL">
     <meta property="og:locale" content="ar_EG">
@@ -303,7 +304,7 @@
         .foot-links > span { opacity: .7; }
         .foot-links a { color: inherit; border-bottom: 0; padding-bottom: 0; font-weight: 500; }
         .foot-links a:hover { color: var(--accent); }
-        .foot-copy { display: block; margin-top: 14px; padding-top: 0; border-top: 0; font-family: var(--ui); font-size: 12.5px; letter-spacing: .03em; opacity: .55; }
+        .foot-copy { display: block; margin-top: 14px; padding-top: 0; border-top: 0; font-family: var(--ui); font-size: 13px; letter-spacing: 0; opacity: .7; }
 
         .pcard:hover { transform: none; }
         .pcard-media { background: var(--card); border-radius: 16px; box-shadow: none; }
@@ -312,6 +313,22 @@
         .pcard:hover .pcard-media img { transform: scale(1.03); }
 
         #cart-modal > div, #product-modal > div, #toast-modal > div, #notice-modal > div, #size-modal > div { border-radius: 20px !important; box-shadow: 0 24px 70px rgba(0,0,0,.3) !important; }
+
+        #offers-bar { background: transparent !important; color: color-mix(in srgb, var(--ink) 70%, transparent) !important; z-index: 1; }
+        .offer-item { color: inherit !important; opacity: 1; font-weight: 500; }
+
+        /* الإنترو: ملء الشاشة + الشعاع بيحرّك الظل */
+        html.intro-on, html.intro-on body { background: #0b0b0c; }
+        body { padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-area-inset-right, 0px); }
+        .intro { padding: calc(26px + env(safe-area-inset-top, 0px)) 26px calc(26px + env(safe-area-inset-bottom, 0px)); animation: beamSwing 6s ease-in-out infinite alternate; }
+        @property --ba { syntax: '<angle>'; inherits: true; initial-value: -22deg; }
+        @keyframes beamSwing { from { --ba: -22deg; } to { --ba: 18deg; } }
+        .intro-beam { animation: none; transform: rotate(var(--ba)); background: conic-gradient(from 195deg at 85% 38%, transparent 0deg, rgba(255,240,205,0) 6deg, rgba(255,240,205,.28) 20deg, rgba(255,240,205,0) 36deg, transparent 50deg); }
+        .scene-line { text-shadow: none; }
+        .scene-final .big .sh { transition: opacity 2.4s var(--ease) .5s; transform: translate(.22em, .02em) skewX(calc(-38deg - var(--ba) * .8)); scale: 1 .2; }
+        .fade-text.active .scene-final .big .sh { opacity: .22; transform: translate(.22em, .02em) skewX(calc(-38deg - var(--ba) * .8)); animation: shGrow 2.4s var(--ease) .5s forwards; }
+        @keyframes shGrow { from { scale: 1 .2; } to { scale: 1 .9; } }
+        @media (prefers-reduced-motion: reduce) { .intro { animation: none; } }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
@@ -501,7 +518,7 @@
             <a href="tel:01042898254" dir="ltr">01042898254</a>
             <a href="https://instagram.com/zillstor.e" target="_blank" rel="noopener noreferrer" dir="ltr">@zillstor.e</a>
         </div>
-        <div class="foot-copy">© 2026 ZILL</div>
+        <div class="foot-copy" dir="rtl">© 2026 ZILL · جميع الحقوق محفوظة</div>
     </footer>
 
     <!-- تكبير الصورة -->
@@ -627,6 +644,11 @@
             if (bar) { bar.style.transitionDuration = '0s'; bar.style.width = '0%'; }
             playScene(introRun);
         }
+        function setIntroChrome(on) {
+            document.documentElement.classList.toggle('intro-on', on);
+            const m = document.querySelector('meta[name="theme-color"]');
+            if (m) m.setAttribute('content', on ? '#0b0b0c' : getComputedStyle(document.body).backgroundColor);
+        }
         function skipIntro() {
             introRun++; // بيلغي أي مؤقتات قديمة (تخطي ثم إعادة تشغيل بسرعة)
             clearTimeout(introTimer);
@@ -637,12 +659,14 @@
             screen.style.pointerEvents = 'none';
             screen.style.opacity = '0';
             introHideTimer = setTimeout(() => { screen.style.display = 'none'; }, 1000);
+            setTimeout(() => setIntroChrome(false), 450);
         }
         function replayIntro() {
             const screen = document.getElementById('intro-screen');
             if (!screen) return;
             clearTimeout(introHideTimer);
             clearTimeout(introShowTimer);
+            setIntroChrome(true);
             screen.style.display = 'flex';
             screen.style.pointerEvents = 'auto';
             introShowTimer = setTimeout(() => { screen.style.opacity = '1'; }, 50);
