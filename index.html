@@ -55,12 +55,19 @@
             height: 32px;
             overflow: hidden;
             position: relative;
-            background-color: transparent;
-            color: inherit;
+            background: transparent !important;
+            background-color: transparent !important;
+            color: var(--ink) !important;
             display: none;
             white-space: nowrap;
             direction: ltr;
             z-index: 45;
+        }
+        html.dark #offers-bar,
+        html:not(.dark) #offers-bar {
+            background: transparent !important;
+            background-color: transparent !important;
+            color: var(--ink) !important;
         }
         #offers-track {
             display: flex;
@@ -83,7 +90,8 @@
             font-size: 11.5px;
             font-weight: 600;
             letter-spacing: .2px;
-            color: inherit;
+            color: var(--ink) !important;
+            background: transparent !important;
             white-space: nowrap;
             direction: rtl;
         }
@@ -617,12 +625,6 @@
                     skipIntro();
                 }
             }, 350);
-
-            // Fail-safe: even if an animation/timer is interrupted,
-            // never leave the intro covering the store indefinitely.
-            setTimeout(() => {
-                if (run === introRun) skipIntro();
-            }, 19000);
         }
 
         function startIntroSequence() {
@@ -1295,6 +1297,9 @@
                     governorate: governorateName,
                     address: address,
                     promo_code: appliedPromo ? appliedPromo.code : '',
+                    // عدد القطع الفعلي للكود: 3 قطع = 3 استخدامات في الشيت
+                    promo_pieces: appliedPromo ? piecesCount : 0,
+                    pieces: piecesCount,
                     items: orderItems,
                     expected_total: totals.total,
                     elapsed_ms: Date.now() - PAGE_LOADED_AT,
@@ -1391,10 +1396,11 @@
         function splitImageUrls(value) {
             if (Array.isArray(value)) return value.map(url => String(url || '').trim()).filter(Boolean);
             return String(value || '')
-                .split(/[;\n|]+|,(?=\s|https?:\/\/|\/\/|\/|data:|[^,\s\/]+\.(?:jpe?g|png|webp|gif|avif|svg)\b)/i)
+                .split(/[;\n|]+|,(?=\s|https?:\/\/|\/\/|\/|data:|[^,\s\/]+\.(?:jpe?g|png|webp|gif|avif|svg))/i)
                 .map(url => url.trim())
                 .filter(Boolean);
         }
+
         function normalizeProduct(product) {
             const images = splitImageUrls(product.image_url || '');
 
@@ -2085,6 +2091,7 @@
             const parts = /[,،;|\n]/.test(raw) ? raw.split(/[,،;|\n]+/) : raw.split('/');
             return parts.map(size => size.trim()).filter(Boolean);
         }
+
         function openProductDetails(productId) {
             const product = allProducts.find(item => String(item.id) === String(productId));
             if (!product) return;
@@ -2291,19 +2298,8 @@
                     screen.style.opacity = '0';
                 }
             } else {
-                try {
-                    startIntroSequence();
-                    storeSet('session', introSeenKey, '1');
-                } catch (e) {
-                    // If anything in the intro fails, never block the store.
-                    skipIntro();
-                }
-
-                // Absolute fallback: the store must become accessible.
-                setTimeout(() => {
-                    const screen = document.getElementById('intro-screen');
-                    if (screen && screen.style.display !== 'none') skipIntro();
-                }, 19500);
+                startIntroSequence();
+                storeSet('session', introSeenKey, '1');
             }
 
             applyThemeButton();
