@@ -4,11 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZILL | The Collection</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="ZILL | ظل — The Collection. تصفّح أحدث القطع واطلب أونلاين.">
+    <meta name="theme-color" content="#f4f4f4">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ZILL">
+    <meta property="og:locale" content="ar_EG">
+    <meta property="og:title" content="ZILL | The Collection">
+    <meta property="og:description" content="ZILL | ظل — تصفّح أحدث القطع واطلب أونلاين.">
+    <meta name="twitter:card" content="summary">
+    <!-- عشان لينك الموقع يظهر بمعاينة على واتساب وإنستجرام: فعّل السطرين دول وحط رابط موقعك وصورة المعاينة الحقيقية -->
+    <!-- <meta property="og:url" content="https://YOUR-DOMAIN/"> -->
+    <!-- <meta property="og:image" content="https://YOUR-DOMAIN/og-image.jpg"> -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Ctext x='32' y='46' font-family='Arial,sans-serif' font-size='40' font-weight='700' text-anchor='middle' fill='%23f4f4f4'%3EZ%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Syne:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Cairo', sans-serif; background-color: #f4f4f4; color: #111; margin: 0; }
-        .brand-font { font-family: 'Syne', sans-serif; }
+        .brand-font { font-family: 'Syne', 'Cairo', sans-serif; }
         .size-option { border: 1px solid #d4d4d4; border-radius: 999px; padding: 9px 17px; font-size: 12px; transition: .2s; }
         .size-option.selected { background: #111; color: white; border-color: #111; }
         .size-option:disabled { opacity: .35; cursor: not-allowed; }
@@ -88,7 +101,10 @@
             to { transform: translate3d(-50%, 0, 0); }
         }
     </style>
-<script src="https://accounts.google.com/gsi/client" async defer></script>
+    <style id="tailwind-static">
+/* Tailwind CSS v3.4.17 — نسخة ثابتة بدل cdn.tailwindcss.com (نفس الشكل بالظبط، من غير بناء CSS في المتصفح) */
+*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.left-4{left:1rem}.top-0{top:0px}.top-4{top:1rem}.left-2{left:0.5rem}.right-2{right:0.5rem}.top-1\/2{top:50%}.z-10{z-index:10}.z-20{z-index:20}.z-40{z-index:40}.z-50{z-index:50}.z-\[60\]{z-index:60}.z-\[65\]{z-index:65}.z-\[70\]{z-index:70}.z-\[80\]{z-index:80}.z-\[75\]{z-index:75}.col-span-full{grid-column:1 / -1}.mx-auto{margin-left:auto;margin-right:auto}.my-5{margin-top:1.25rem;margin-bottom:1.25rem}.my-auto{margin-top:auto;margin-bottom:auto}.mx-1{margin-left:0.25rem;margin-right:0.25rem}.-mt-1{margin-top:-0.25rem}.mb-1{margin-bottom:0.25rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mb-1\.5{margin-bottom:0.375rem}.mt-1\.5{margin-top:0.375rem}.mr-2{margin-right:0.5rem}.mt-0\.5{margin-top:0.125rem}.mt-1{margin-top:0.25rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.aspect-\[4\/5\]{aspect-ratio:4/5}.h-28{height:7rem}.h-4{height:1rem}.h-9{height:2.25rem}.h-20{height:5rem}.h-64{height:16rem}.h-full{height:100%}.max-h-48{max-height:12rem}.max-h-\[92vh\]{max-height:92vh}.min-h-\[76px\]{min-height:76px}.min-h-screen{min-height:100vh}.w-36{width:9rem}.w-4{width:1rem}.w-9{width:2.25rem}.w-full{width:100%}.w-16{width:4rem}.min-w-0{min-width:0px}.max-w-2xl{max-width:42rem}.max-w-4xl{max-width:56rem}.max-w-6xl{max-width:72rem}.max-w-\[90px\]{max-width:90px}.max-w-lg{max-width:32rem}.max-w-sm{max-width:24rem}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.flex-shrink-0{flex-shrink:0}.shrink-0{flex-shrink:0}.flex-grow{flex-grow:1}.-translate-y-1\/2{--tw-translate-y:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-not-allowed{cursor:not-allowed}.cursor-pointer{cursor:pointer}.resize{resize:both}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.gap-6{gap:1.5rem}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.375rem * var(--tw-space-y-reverse))}.divide-y > :not([hidden]) ~ :not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px * calc(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px * var(--tw-divide-y-reverse))}.divide-neutral-200\/70 > :not([hidden]) ~ :not([hidden]){border-color:rgb(229 229 229 / 0.7)}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.whitespace-nowrap{white-space:nowrap}.whitespace-pre-line{white-space:pre-line}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-neutral-100{--tw-border-opacity:1;border-color:rgb(245 245 245 / var(--tw-border-opacity, 1))}.border-neutral-200{--tw-border-opacity:1;border-color:rgb(229 229 229 / var(--tw-border-opacity, 1))}.border-neutral-300{--tw-border-opacity:1;border-color:rgb(212 212 212 / var(--tw-border-opacity, 1))}.border-black{--tw-border-opacity:1;border-color:rgb(0 0 0 / var(--tw-border-opacity, 1))}.border-neutral-200\/60{border-color:rgb(229 229 229 / 0.6)}.border-transparent{border-color:transparent}.bg-\[\#f4f4f4\]{--tw-bg-opacity:1;background-color:rgb(244 244 244 / var(--tw-bg-opacity, 1))}.bg-\[\#f4f4f4\]\/80{background-color:rgb(244 244 244 / 0.8)}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))}.bg-black\/40{background-color:rgb(0 0 0 / 0.4)}.bg-black\/50{background-color:rgb(0 0 0 / 0.5)}.bg-black\/60{background-color:rgb(0 0 0 / 0.6)}.bg-neutral-100{--tw-bg-opacity:1;background-color:rgb(245 245 245 / var(--tw-bg-opacity, 1))}.bg-neutral-50{--tw-bg-opacity:1;background-color:rgb(250 250 250 / var(--tw-bg-opacity, 1))}.bg-neutral-50\/70{background-color:rgb(250 250 250 / 0.7)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/90{background-color:rgb(255 255 255 / 0.9)}.bg-neutral-900{--tw-bg-opacity:1;background-color:rgb(23 23 23 / var(--tw-bg-opacity, 1))}.bg-white\/85{background-color:rgb(255 255 255 / 0.85)}.object-contain{object-fit:contain}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.p-3\.5{padding:0.875rem}.p-1{padding:0.25rem}.p-2{padding:0.5rem}.px-1\.5{padding-left:0.375rem;padding-right:0.375rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-14{padding-top:3.5rem;padding-bottom:3.5rem}.pb-2{padding-bottom:0.5rem}.pb-3{padding-bottom:0.75rem}.pt-2{padding-top:0.5rem}.pt-4{padding-top:1rem}.pt-3{padding-top:0.75rem}.text-left{text-align:left}.text-center{text-align:center}.font-sans{font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[8px\]{font-size:8px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.text-5xl{font-size:3rem;line-height:1}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-semibold{font-weight:600}.font-light{font-weight:300}.font-normal{font-weight:400}.uppercase{text-transform:uppercase}.leading-6{line-height:1.5rem}.leading-8{line-height:2rem}.leading-5{line-height:1.25rem}.leading-relaxed{line-height:1.625}.tracking-\[0\.25em\]{letter-spacing:0.25em}.tracking-\[0\.3em\]{letter-spacing:0.3em}.tracking-tight{letter-spacing:-0.025em}.tracking-wider{letter-spacing:0.05em}.tracking-widest{letter-spacing:0.1em}.tracking-normal{letter-spacing:0em}.text-\[\#111\]{--tw-text-opacity:1;color:rgb(17 17 17 / var(--tw-text-opacity, 1))}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.text-neutral-400{--tw-text-opacity:1;color:rgb(163 163 163 / var(--tw-text-opacity, 1))}.text-neutral-500{--tw-text-opacity:1;color:rgb(115 115 115 / var(--tw-text-opacity, 1))}.text-neutral-600{--tw-text-opacity:1;color:rgb(82 82 82 / var(--tw-text-opacity, 1))}.text-neutral-800{--tw-text-opacity:1;color:rgb(38 38 38 / var(--tw-text-opacity, 1))}.text-neutral-900{--tw-text-opacity:1;color:rgb(23 23 23 / var(--tw-text-opacity, 1))}.text-red-500{--tw-text-opacity:1;color:rgb(239 68 68 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-emerald-700{--tw-text-opacity:1;color:rgb(4 120 87 / var(--tw-text-opacity, 1))}.text-neutral-700{--tw-text-opacity:1;color:rgb(64 64 64 / var(--tw-text-opacity, 1))}.line-through{-webkit-text-decoration-line:line-through;text-decoration-line:line-through}.opacity-40{opacity:0.4}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow{--tw-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-1000{transition-duration:1000ms}.hover\:border-black:hover{--tw-border-opacity:1;border-color:rgb(0 0 0 / var(--tw-border-opacity, 1))}.hover\:bg-neutral-200:hover{--tw-bg-opacity:1;background-color:rgb(229 229 229 / var(--tw-bg-opacity, 1))}.hover\:bg-neutral-800:hover{--tw-bg-opacity:1;background-color:rgb(38 38 38 / var(--tw-bg-opacity, 1))}.hover\:bg-neutral-700:hover{--tw-bg-opacity:1;background-color:rgb(64 64 64 / var(--tw-bg-opacity, 1))}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.hover\:text-black:hover{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.hover\:text-red-700:hover{--tw-text-opacity:1;color:rgb(185 28 28 / var(--tw-text-opacity, 1))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}.focus\:border-black:focus{--tw-border-opacity:1;border-color:rgb(0 0 0 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}@media (min-width: 640px){.sm\:inline{display:inline}.sm\:w-52{width:13rem}.sm\:gap-2{gap:0.5rem}.sm\:gap-4{gap:1rem}.sm\:p-4{padding:1rem}.sm\:p-6{padding:1.5rem}.sm\:px-3\.5{padding-left:0.875rem;padding-right:0.875rem}.sm\:px-5{padding-left:1.25rem;padding-right:1.25rem}.sm\:py-2{padding-top:0.5rem;padding-bottom:0.5rem}.sm\:text-\[9px\]{font-size:9px}.sm\:text-xl{font-size:1.25rem;line-height:1.75rem}.sm\:text-xs{font-size:0.75rem;line-height:1rem}.sm\:tracking-\[0\.3em\]{letter-spacing:0.3em}}@media (min-width: 768px){.md\:mt-8{margin-top:2rem}.md\:block{display:block}.md\:h-72{height:18rem}.md\:w-64{width:16rem}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:gap-3{gap:0.75rem}.md\:gap-8{gap:2rem}.md\:p-12{padding:3rem}.md\:p-8{padding:2rem}.md\:p-6{padding:1.5rem}.md\:px-6{padding-left:1.5rem;padding-right:1.5rem}.md\:px-8{padding-left:2rem;padding-right:2rem}.md\:py-6{padding-top:1.5rem;padding-bottom:1.5rem}.md\:py-8{padding-top:2rem;padding-bottom:2rem}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}.md\:text-7xl{font-size:4.5rem;line-height:1}.md\:text-sm{font-size:0.875rem;line-height:1.25rem}}
+    </style>
 </head>
 <body class="bg-[#f4f4f4] text-neutral-900 min-h-screen flex flex-col justify-between">
 
@@ -157,9 +173,9 @@
     </main>
 
     <!-- صفحة تفاصيل المنتج -->
-    <div id="product-modal" class="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4" onclick="if(event.target===this) closeProductDetails()">
+    <div id="product-modal" role="dialog" aria-modal="true" aria-label="تفاصيل المنتج" class="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4" onclick="if(event.target===this) closeProductDetails()">
         <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto shadow-2xl relative">
-            <button onclick="closeProductDetails()" class="absolute top-4 left-4 z-10 bg-white/90 rounded-full w-9 h-9 text-lg">✕</button>
+            <button type="button" onclick="closeProductDetails()" aria-label="إغلاق" class="absolute top-4 left-4 z-10 bg-white/90 rounded-full w-9 h-9 text-lg">✕</button>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-5 md:p-8">
                 <div>
                     <div id="detail-main-image" class="w-full aspect-[4/5] bg-white rounded-xl overflow-hidden border border-neutral-100"></div>
@@ -184,7 +200,7 @@
     </div>
 
     <!-- نافذة تنبيه الإضافة للسلة -->
-    <div id="toast-modal" class="fixed inset-0 z-[70] bg-black/40 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div id="toast-modal" role="dialog" aria-modal="true" aria-label="تمت الإضافة للسلة" class="fixed inset-0 z-[70] bg-black/40 backdrop-blur-sm hidden items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl space-y-4">
             <h3 class="brand-font text-base font-bold">تمت إضافة المنتج للسلة</h3>
             <p class="text-xs text-neutral-500">اذهب للسلة لتاكيد الاوردر أو تابع التسوق.</p>
@@ -195,8 +211,19 @@
         </div>
     </div>
 
+    <!-- رسائل داخل الصفحة (بدل alert) -->
+    <div id="notice-modal" role="alertdialog" aria-modal="true" aria-labelledby="notice-title" class="fixed inset-0 z-[80] bg-black/40 backdrop-blur-sm hidden items-center justify-center p-4" onclick="if(event.target===this) closeNotice()">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl space-y-4">
+            <h3 id="notice-title" class="brand-font text-base font-bold"></h3>
+            <p id="notice-text" class="text-xs text-neutral-500 leading-6 whitespace-pre-line"></p>
+            <div class="pt-2">
+                <button type="button" onclick="closeNotice()" class="w-full bg-black text-white py-2.5 rounded-xl text-xs font-semibold hover:bg-neutral-800 transition">حسناً</button>
+            </div>
+        </div>
+    </div>
+
     <!-- نافذة سلة الطلبات وتأكيد الشراء -->
-    <div id="cart-modal" class="fixed inset-0 z-[65] bg-black/50 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4" onclick="if(event.target===this) toggleCartModal()">
+    <div id="cart-modal" role="dialog" aria-modal="true" aria-label="سلة الطلبات" class="fixed inset-0 z-[65] bg-black/50 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4" onclick="if(event.target===this) toggleCartModal()">
         <div class="bg-white rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-xl flex flex-col max-h-[92vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b pb-3 mb-3 shrink-0">
                 <h3 class="brand-font text-lg font-bold">سلة الطلبات وتأكيد الشراء</h3>
@@ -208,24 +235,27 @@
             <div class="space-y-3 border-t pt-4">
                 <div>
                     <label class="block text-xs text-neutral-500 mb-1">الاسم الكامل</label>
-                    <input type="text" id="customer-name" class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-black" placeholder="اكتب اسمك هنا...">
+                    <input type="text" id="customer-name" autocomplete="name" class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-black" placeholder="اكتب اسمك هنا...">
                 </div>
                 <div>
                     <label class="block text-xs text-neutral-500 mb-1">رقم الهاتف</label>
-                    <input type="tel" id="customer-phone" inputmode="numeric" pattern="[0-9]*" maxlength="11" oninput="sanitizePhoneInput(this)" class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-black" placeholder="01xxxxxxxxx">
+                    <input type="tel" id="customer-phone" inputmode="numeric" pattern="[0-9]*" maxlength="11" oninput="sanitizePhoneInput(this)" autocomplete="tel-national" class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-black" placeholder="01xxxxxxxxx">
                 </div>
                 <div>
                     <label class="block text-xs text-neutral-500 mb-1">المحافظة (تحديد سعر الشحن تلقائياً)</label>
                     <select id="customer-governorate" onchange="updateCartUI()" class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-black">
-                        <option value="0">اختر المحافظة...</option>
-                        <option value="50">القاهرة والجيزة (50 EGP)</option>
-                        <option value="60">الإسكندرية (60 EGP)</option>
-                        <option value="70">باقي المحافظات (70 EGP)</option>
+                        <option value="">اختر المحافظة...</option>
+                        <option value="fb-0" data-cost="50" data-governorate="القاهرة والجيزة">القاهرة والجيزة (50 EGP)</option>
+                        <option value="fb-1" data-cost="60" data-governorate="الإسكندرية">الإسكندرية (60 EGP)</option>
+                        <option value="fb-2" data-cost="70" data-governorate="باقي المحافظات">باقي المحافظات (70 EGP)</option>
                     </select>
                 </div>
                 <div>
                     <label id="address-label" class="block text-xs text-neutral-500 mb-1">أدخل عنوانك</label>
-                    <textarea id="customer-address" class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-black" placeholder="أدخل عنوانك (المدينة، الشارع...)"></textarea>
+                    <textarea id="customer-address" autocomplete="street-address" class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-black" placeholder="أدخل عنوانك (المدينة، الشارع...)"></textarea>
+                </div>
+                <div aria-hidden="true" style="position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);border:0;opacity:0;pointer-events:none;">
+                    <label>اتركه فارغاً<input type="text" id="hp-order" name="hp_extra" tabindex="-1" autocomplete="off"></label>
                 </div>
             </div>
 
@@ -256,7 +286,7 @@
                     <p id="promo-status-msg" class="text-[11px] mt-1.5 hidden"></p>
                 </div>
 
-                <button onclick="confirmOrder()" class="w-full bg-black text-white py-3 mt-3 rounded-xl text-xs font-semibold tracking-wider hover:bg-neutral-800 transition">
+                <button type="button" id="confirm-order-btn" onclick="confirmOrder()" class="w-full bg-black text-white py-3 mt-3 rounded-xl text-xs font-semibold tracking-wider hover:bg-neutral-800 transition">
                     تأكيد الاوردر ✅
                 </button>
             </div>
@@ -264,7 +294,7 @@
     </div>
 
     <!-- نافذة حساب العميل -->
-    <div id="account-modal" class="fixed inset-0 z-[75] bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4" onclick="if(event.target===this) toggleAccountModal()">
+    <div id="account-modal" role="dialog" aria-modal="true" aria-label="حساب العميل" class="fixed inset-0 z-[75] bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4" onclick="if(event.target===this) toggleAccountModal()">
         <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative space-y-4">
             <div class="flex justify-between items-center border-b pb-3">
                 <h3 class="brand-font text-base font-bold">حساب العميل</h3>
@@ -277,11 +307,14 @@
                 </p>
                 <div>
                     <label for="account-name-input" class="block text-xs text-neutral-500 mb-1">الاسم (اختياري)</label>
-                    <input type="text" id="account-name-input" class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-black" placeholder="الاسم الكامل">
+                    <input type="text" id="account-name-input" autocomplete="name" class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-black" placeholder="الاسم الكامل">
                 </div>
                 <div>
                     <label for="account-email-input" class="block text-xs text-neutral-500 mb-1">البريد الإلكتروني</label>
-                    <input type="email" id="account-email-input" dir="ltr" class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-black text-left" placeholder="name@example.com">
+                    <input type="email" id="account-email-input" dir="ltr" autocomplete="email" class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-black text-left" placeholder="name@example.com">
+                </div>
+                <div aria-hidden="true" style="position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);border:0;opacity:0;pointer-events:none;">
+                    <label>اتركه فارغاً<input type="text" id="hp-account" name="hp_extra" tabindex="-1" autocomplete="off"></label>
                 </div>
                 <p id="account-error-msg" class="text-[11px] text-red-500 hidden"></p>
                 <button type="button" id="save-account-btn" onclick="registerSimpleAccount()" class="w-full bg-black text-white py-2.5 rounded-xl text-xs font-semibold hover:bg-neutral-800 transition">
@@ -295,7 +328,7 @@
                     <p id="account-email" class="text-xs text-neutral-600 truncate" dir="ltr"></p>
                 </div>
                 <p id="account-sync-status" class="text-[11px] text-emerald-700 font-semibold leading-5"></p>
-                <button type="button" onclick="signOutGoogleAccount()" class="w-full border border-neutral-300 text-neutral-700 hover:border-black hover:text-black py-2.5 rounded-xl text-xs font-semibold transition">
+                <button type="button" onclick="signOutAccount()" class="w-full border border-neutral-300 text-neutral-700 hover:border-black hover:text-black py-2.5 rounded-xl text-xs font-semibold transition">
                     تسجيل الخروج
                 </button>
             </div>
@@ -314,6 +347,49 @@
     </footer>
 
     <script>
+        // --- إعدادات الاتصال بالسيرفر (Google Apps Script) ---
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzDxwMRuOJk8QnRQfOekAJ0H313yC59pyUlb3FV9oZjQAR775_aoHAaRl34PkNsv1Tk/exec';
+        const PAGE_LOADED_AT = Date.now();
+        const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+        // --- تخزين آمن (المتصفح ممكن يقفل التخزين: Block all cookies) ---
+        function storeGet(kind, key) {
+            try { return (kind === 'local' ? window.localStorage : window.sessionStorage).getItem(key); } catch (e) { return null; }
+        }
+        function storeSet(kind, key, value) {
+            try { (kind === 'local' ? window.localStorage : window.sessionStorage).setItem(key, value); } catch (e) {}
+        }
+        function storeRemove(kind, key) {
+            try { (kind === 'local' ? window.localStorage : window.sessionStorage).removeItem(key); } catch (e) {}
+        }
+
+        // --- أرقام عربية/فارسية -> إنجليزية ---
+        function toAsciiDigits(value) {
+            return String(value ?? '')
+                .replace(/[٠-٩]/g, d => String(d.charCodeAt(0) - 0x0660))
+                .replace(/[۰-۹]/g, d => String(d.charCodeAt(0) - 0x06F0));
+        }
+
+        // --- طلب POST للسيرفر وقراءة الرد (JSON) ---
+        async function apiPost(body, timeoutMs = 25000) {
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), timeoutMs);
+            try {
+                const response = await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(body),
+                    signal: controller.signal
+                });
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                const data = await response.json();
+                if (!data || typeof data !== 'object') throw new Error('Bad response');
+                return data;
+            } finally {
+                clearTimeout(timer);
+            }
+        }
+
         // --- الإنترو ---
         const scenes = [
             { type: "text", content: "«كما لا يفارقك ظلك...»" },
@@ -326,11 +402,16 @@
 
         let currentScene = 0;
         let introTimer;
+        let introShowTimer;
+        let introHideTimer;
+        let introRun = 0;
 
-        function playScene() {
+        function playScene(run) {
+            if (run !== introRun) return;
             const container = document.getElementById('scene-content');
             container.classList.remove('active');
-            setTimeout(() => {
+            introTimer = setTimeout(() => {
+                if (run !== introRun) return;
                 if (currentScene < scenes.length) {
                     const scene = scenes[currentScene];
                     if (scene.type === "text") {
@@ -346,34 +427,43 @@
                     container.classList.add('active');
                     let duration = (currentScene === scenes.length - 1) ? 3000 : 2200;
                     currentScene++;
-                    introTimer = setTimeout(playScene, duration);
+                    introTimer = setTimeout(() => playScene(run), duration);
                 } else {
                     skipIntro();
                 }
             }, 350);
         }
 
-        function startIntroSequence() { currentScene = 0; playScene(); }
-        function skipIntro() {
+        function startIntroSequence() {
+            introRun++;
             clearTimeout(introTimer);
+            currentScene = 0;
+            playScene(introRun);
+        }
+        function skipIntro() {
+            introRun++; // بيلغي أي مؤقتات قديمة (تخطي ثم إعادة تشغيل بسرعة)
+            clearTimeout(introTimer);
+            clearTimeout(introShowTimer);
+            clearTimeout(introHideTimer);
             const screen = document.getElementById('intro-screen');
             if (!screen) return;
             screen.style.pointerEvents = 'none';
             screen.style.opacity = '0';
-            setTimeout(() => { screen.style.display = 'none'; }, 1000);
+            introHideTimer = setTimeout(() => { screen.style.display = 'none'; }, 1000);
         }
         function replayIntro() {
             const screen = document.getElementById('intro-screen');
             if (!screen) return;
+            clearTimeout(introHideTimer);
+            clearTimeout(introShowTimer);
             screen.style.display = 'flex';
             screen.style.pointerEvents = 'auto';
-            setTimeout(() => { screen.style.opacity = '1'; }, 50);
+            introShowTimer = setTimeout(() => { screen.style.opacity = '1'; }, 50);
             startIntroSequence();
         }
 
         // --- حساب العميل ---
         const CUSTOMER_STORAGE_KEY = 'zill_customer_account_v2';
-        const REGISTERED_EMAILS_KEY = 'zill_registered_emails_v1';
         let currentCustomer = null;
 
         function loadSavedCustomer() {
@@ -407,28 +497,6 @@
             } catch (e) {}
         }
 
-        function getRegisteredEmailsList() {
-            try {
-                const raw = localStorage.getItem(REGISTERED_EMAILS_KEY);
-                const arr = raw ? JSON.parse(raw) : [];
-                return Array.isArray(arr) ? arr.map(e => String(e || '').trim().toLowerCase()).filter(Boolean) : [];
-            } catch (e) {
-                return [];
-            }
-        }
-
-        function markEmailAsRegistered(email) {
-            const clean = String(email || '').trim().toLowerCase();
-            if (!clean) return;
-            const list = getRegisteredEmailsList();
-            if (!list.includes(clean)) {
-                list.push(clean);
-                try {
-                    localStorage.setItem(REGISTERED_EMAILS_KEY, JSON.stringify(list));
-                } catch (e) {}
-            }
-        }
-
         currentCustomer = loadSavedCustomer();
 
         function updateAccountUI(syncMessage = '') {
@@ -460,61 +528,33 @@
             }
         }
 
-        async function saveCustomerToSheet(customer) {
-            if (!customer || !customer.email) return false;
-            try {
-                await fetch(WEB_APP_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify({
-                        action: 'register_customer',
-                        name: customer.name || '',
-                        email: customer.email,
-                        picture: '',
-                        google_id: ''
-                    })
-                });
-                return true;
-            } catch (err) {
-                console.error('Customer save error:', err);
-                return false;
-            }
-        }
-
         async function registerSimpleAccount() {
             const nameInput = document.getElementById('account-name-input');
             const emailInput = document.getElementById('account-email-input');
             const errEl = document.getElementById('account-error-msg');
             const saveBtn = document.getElementById('save-account-btn');
+            const honeypot = document.getElementById('hp-account');
 
             const name = String(nameInput?.value || '').trim();
             const email = String(emailInput?.value || '').trim().toLowerCase();
 
-            if (!email || !email.includes('@') || !email.includes('.')) {
+            const showError = (message) => {
                 if (errEl) {
-                    errEl.textContent = 'يرجى إدخال بريد إلكتروني صحيح.';
+                    errEl.textContent = message;
                     errEl.classList.remove('hidden');
                 }
+            };
+
+            if (!EMAIL_REGEX.test(email)) {
+                showError('يرجى إدخال بريد إلكتروني صحيح.');
                 emailInput?.focus();
                 return;
             }
 
             if (errEl) errEl.classList.add('hidden');
 
-            const registeredList = getRegisteredEmailsList();
-            const alreadyRegistered = registeredList.includes(email)
-                || (currentCustomer && currentCustomer.email && currentCustomer.email.toLowerCase() === email);
-
-            if (alreadyRegistered) {
-                if (errEl) {
-                    errEl.textContent = 'هذا البريد الإلكتروني مسجل مسبقاً لدينا.';
-                    errEl.classList.remove('hidden');
-                }
-                currentCustomer = {
-                    name: name || (currentCustomer && currentCustomer.email === email ? currentCustomer.name : ''),
-                    email: email
-                };
+            if (currentCustomer && currentCustomer.email && currentCustomer.email.toLowerCase() === email) {
+                currentCustomer = { name: name || currentCustomer.name || '', email: email };
                 persistCustomer(currentCustomer);
                 updateAccountUI('هذا البريد الإلكتروني مسجل مسبقاً لدينا.');
                 return;
@@ -525,24 +565,35 @@
                 saveBtn.textContent = 'جاري التأكيد...';
             }
 
-            currentCustomer = {
-                name: name,
-                email: email
-            };
+            try {
+                const res = await apiPost({
+                    action: 'register_customer',
+                    name: name,
+                    email: email,
+                    hp_extra: String(honeypot?.value || '')
+                }, 20000);
 
-            persistCustomer(currentCustomer);
-            markEmailAsRegistered(email);
-            await saveCustomerToSheet(currentCustomer);
+                if (res.result !== 'success') {
+                    showError(res.message || 'تعذر تسجيل البريد دلوقتي. حاول مرة تانية.');
+                    return;
+                }
 
-            updateAccountUI('تم تسجيل بريدك الإلكتروني بنجاح، ستصلك أحدث العروض قريباً.');
-
-            if (saveBtn) {
-                saveBtn.disabled = false;
-                saveBtn.textContent = 'تأكيد تسجيل الحساب';
+                // الحساب بيتحفظ على الجهاز بعد ما السيرفر يأكد التسجيل بس
+                currentCustomer = { name: name, email: email };
+                persistCustomer(currentCustomer);
+                updateAccountUI('تم تسجيل بريدك الإلكتروني بنجاح، ستصلك أحدث العروض قريباً.');
+            } catch (err) {
+                console.error('Customer save error:', err);
+                showError('تعذر تسجيل البريد دلوقتي. راجع اتصال الإنترنت وحاول مرة تانية.');
+            } finally {
+                if (saveBtn) {
+                    saveBtn.disabled = false;
+                    saveBtn.textContent = 'تأكيد تسجيل الحساب';
+                }
             }
         }
 
-        function signOutGoogleAccount() {
+        function signOutAccount() {
             currentCustomer = null;
             persistCustomer(null);
             const emailInput = document.getElementById('account-email-input');
@@ -574,85 +625,22 @@
         } catch (e) {
             cart = [];
         }
-        let shippingOptions = [];
-        let promoCodesList = [];
+        // تنضيف السلة المحفوظة (ممكن تكون من نسخة قديمة أو متعدّل عليها)
+        cart = cart
+            .filter(item => item && item.id !== undefined && item.id !== null && item.size)
+            .map(item => ({
+                id: item.id,
+                name: String(item.name || ''),
+                price: Number(item.price) || 0,
+                size: String(item.size),
+                quantity: Math.max(1, Math.floor(Number(item.quantity)) || 1)
+            }));
         let appliedPromo = null;
+        let promoRequestId = 0;
+        const MAX_QTY_PER_LINE = 20;
 
-        function parseDiscountPercent(rawVal) {
-            if (rawVal === undefined || rawVal === null) return 0;
-            const cleaned = String(rawVal).replace('%', '').trim();
-            if (!cleaned) return 0;
-            const num = parseFloat(cleaned);
-            if (!Number.isFinite(num) || num <= 0) return 0;
-            if (num > 0 && num < 1) return Math.min(100, num * 100);
-            return Math.min(100, num);
-        }
-
-        function parseOptionalLimitNumber(rawVal) {
-            if (rawVal === undefined || rawVal === null || String(rawVal).trim() === '') return null;
-            const num = Number(String(rawVal).trim());
-            if (!Number.isFinite(num) || num <= 0) return null;
-            return Math.floor(num);
-        }
-
-        function parseUsedCountNumber(rawVal) {
-            if (rawVal === undefined || rawVal === null || String(rawVal).trim() === '') return 0;
-            const num = Number(String(rawVal).trim());
-            if (!Number.isFinite(num) || num < 0) return 0;
-            return Math.floor(num);
-        }
-
-        function isPromoExhausted(promoItem) {
-            if (!promoItem) return false;
-            if (promoItem.maxUses !== null && promoItem.maxUses !== undefined && promoItem.maxUses > 0) {
-                return (Number(promoItem.usedCount) || 0) >= promoItem.maxUses;
-            }
-            return false;
-        }
-
-        function extractPromoCodes(data) {
-            const rawList = data?.promo_codes
-                || data?.promocodes
-                || data?.promoCodes
-                || data?.coupons
-                || data?.discounts
-                || data?.codes
-                || [];
-            if (!Array.isArray(rawList)) return [];
-            return rawList
-                .map(row => {
-                    if (!row) return null;
-                    if (Array.isArray(row)) {
-                        const code = String(row[0] || '').trim();
-                        const pct = parseDiscountPercent(row[1]);
-                        const activeRaw = row[2];
-                        const isInactive = activeRaw !== undefined && activeRaw !== '' &&
-                            ['false', 'off', 'inactive', '0', 'no', 'لا'].includes(String(activeRaw).trim().toLowerCase());
-                        if (!code || pct <= 0 || isInactive) return null;
-                        const maxUses = parseOptionalLimitNumber(row[3]);
-                        const usedCount = parseUsedCountNumber(row[4]);
-                        return { code, percent: pct, maxUses, usedCount };
-                    }
-                    if (typeof row === 'object') {
-                        const code = String(row.code ?? row.promo ?? row.promo_code ?? row.coupon ?? row.name ?? '').trim();
-                        const pct = parseDiscountPercent(
-                            row.discount ?? row.percent ?? row.percentage ?? row.off ?? row.rate ?? row.value ?? ''
-                        );
-                        const activeRaw = row.active ?? row.status ?? row.enabled ?? '';
-                        const isInactive = activeRaw !== '' &&
-                            ['false', 'off', 'inactive', 'disabled', '0', 'no', 'لا'].includes(String(activeRaw).trim().toLowerCase());
-                        if (!code || pct <= 0 || isInactive) return null;
-                        const maxUses = parseOptionalLimitNumber(
-                            row.max_uses ?? row.maxUses ?? row.usage_limit ?? row.limit ?? row.max_count ?? ''
-                        );
-                        const usedCount = parseUsedCountNumber(
-                            row.used_count ?? row.usedCount ?? row.uses ?? row.used ?? 0
-                        );
-                        return { code, percent: pct, maxUses, usedCount };
-                    }
-                    return null;
-                })
-                .filter(Boolean);
+        function round2(n) {
+            return Math.round(n * 100) / 100;
         }
 
         function showPromoMessage(text, isSuccess) {
@@ -668,9 +656,26 @@
             el.classList.remove('hidden');
         }
 
+        function setPromoBusy(busy) {
+            const btn = document.getElementById('apply-promo-btn');
+            if (!btn) return;
+            btn.disabled = !!busy;
+            btn.textContent = busy ? 'جاري التحقق...' : 'تطبيق';
+        }
+
+        function promoFailMessage(res) {
+            if (res && res.result === 'success' && res.reason === 'exhausted') {
+                return 'تم انتهاء عدد مرات الاستخدام المسموح بها لهذا الكود.';
+            }
+            if (res && res.result === 'error' && res.message) return res.message;
+            return 'كود الخصم غير صحيح أو غير متاح.';
+        }
+
         function onPromoInputChange() {
             const input = document.getElementById('promo-code-input');
             const typed = String(input?.value || '').trim().toLowerCase();
+            promoRequestId++; // بيلغي أي تحقق شغال لكود قديم
+            setPromoBusy(false);
             if (appliedPromo && appliedPromo.code.toLowerCase() !== typed) {
                 appliedPromo = null;
                 showPromoMessage('', false);
@@ -682,7 +687,8 @@
             }
         }
 
-        function applyPromoCode() {
+        // التحقق من الكود بيتم على السيرفر (مفيش قائمة أكواد بتتبعت للمتصفح)
+        async function applyPromoCode() {
             const input = document.getElementById('promo-code-input');
             const rawCode = String(input?.value || '').trim();
             if (!rawCode) {
@@ -692,83 +698,73 @@
                 return;
             }
 
-            const matched = promoCodesList.find(item => item.code.toLowerCase() === rawCode.toLowerCase());
-            if (!matched) {
+            const myRequest = ++promoRequestId;
+            setPromoBusy(true);
+            try {
+                const res = await apiPost({ action: 'validate_promo', code: rawCode }, 15000);
+                if (myRequest !== promoRequestId) return;
+                if (res.result === 'success' && res.valid) {
+                    appliedPromo = { code: String(res.code), percent: Number(res.percent) || 0 };
+                    const remainingText = (res.remaining !== null && res.remaining !== undefined)
+                        ? ` (متبقي ${res.remaining} استخدام)`
+                        : '';
+                    showPromoMessage(`تم تطبيق كود (${appliedPromo.code})${remainingText}`, true);
+                } else {
+                    appliedPromo = null;
+                    showPromoMessage(promoFailMessage(res), false);
+                }
+            } catch (err) {
+                if (myRequest !== promoRequestId) return;
+                console.error('Promo check error:', err);
                 appliedPromo = null;
-                showPromoMessage('كود الخصم غير صحيح أو غير متاح.', false);
-                updateCartUI();
-                return;
+                showPromoMessage('تعذر التحقق من الكود دلوقتي. راجع اتصال الإنترنت وحاول مرة أخرى.', false);
             }
-
-            if (isPromoExhausted(matched)) {
-                appliedPromo = null;
-                showPromoMessage('تم انتهاء عدد مرات الاستخدام المسموح بها لهذا الكود.', false);
-                updateCartUI();
-                return;
-            }
-
-            appliedPromo = {
-                code: matched.code,
-                percent: matched.percent,
-                maxUses: matched.maxUses,
-                usedCount: matched.usedCount
-            };
-            const remainingText = (matched.maxUses !== null && matched.maxUses > 0)
-                ? ` (متبقي ${Math.max(0, matched.maxUses - matched.usedCount)} استخدام)`
-                : '';
-            showPromoMessage(`تم تطبيق كود (${matched.code}) بخصم ${matched.percent}%${remainingText}`, true);
+            setPromoBusy(false);
             updateCartUI();
         }
 
-        function getItemDiscountUnitPrice(item) {
-            const prodObj = allProducts.find(p => String(p.id) === String(item.id));
-            const oldPrice = Number(item.old_price ?? prodObj?.old_price ?? 0) || 0;
-            const currentPrice = Number(item.price) || 0;
-            return oldPrice > 0 ? oldPrice : currentPrice;
+        // بعد ما الأسعار تتغير: نتأكد إن الكود المطبّق لسه صالح وبنفس النسبة
+        async function revalidateAppliedPromo() {
+            if (!appliedPromo) return;
+            try {
+                const res = await apiPost({ action: 'validate_promo', code: appliedPromo.code }, 15000);
+                if (res.result === 'success' && res.valid) {
+                    appliedPromo = { code: String(res.code), percent: Number(res.percent) || 0 };
+                } else {
+                    appliedPromo = null;
+                    showPromoMessage(promoFailMessage(res), false);
+                }
+            } catch (err) { /* نسيب الكود زي ما هو والسيرفر هو اللي يحسم */ }
+            updateCartUI();
         }
 
+        // الخصم بيتحسب على السعر الحالي اللي العميل بيدفعه (مش السعر القديم)
         function calculateOrderTotals() {
-            const subtotal = cart.reduce((sum, item) => sum + (Number(item.price) || 0) * item.quantity, 0);
-            const discountBaseSubtotal = cart.reduce(
-                (sum, item) => sum + getItemDiscountUnitPrice(item) * item.quantity,
-                0
-            );
+            const subtotal = round2(cart.reduce((sum, item) => sum + round2((Number(item.price) || 0) * item.quantity), 0));
             const discountPercent = appliedPromo ? (Number(appliedPromo.percent) || 0) : 0;
-            const discountAmount = discountBaseSubtotal > 0 && discountPercent > 0
-                ? Math.round((discountBaseSubtotal * discountPercent) / 100)
+            const discountAmount = subtotal > 0 && discountPercent > 0
+                ? Math.min(subtotal, Math.round((subtotal * discountPercent) / 100))
                 : 0;
-            const discountedSubtotal = appliedPromo && discountAmount > 0
-                ? Math.max(0, discountBaseSubtotal - discountAmount)
-                : subtotal;
             const shippingFee = getShippingFee();
-            const total = discountedSubtotal + shippingFee;
-            return {
-                subtotal,
-                discountBaseSubtotal,
-                discountPercent,
-                discountAmount,
-                discountedSubtotal,
-                shippingFee,
-                total
-            };
+            const total = round2(subtotal - discountAmount + shippingFee);
+            return { subtotal, discountPercent, discountAmount, shippingFee, total };
         }
 
         function addToCart(id, name, price, size) {
-            if (!size) { alert('من فضلك اختار المقاس الأول.'); return; }
-            const prodObj = allProducts.find(p => String(p.id) === String(id));
-            const oldPriceVal = Number(prodObj?.old_price) || 0;
-            let existingItem = cart.find(item => String(item.id) === String(id) && item.size === size);
+            if (!size) { showNotice('من فضلك اختار المقاس الأول.'); return; }
+            const existingItem = cart.find(item => String(item.id) === String(id) && item.size === size);
             if (existingItem) {
-                existingItem.quantity += 1;
-                if (oldPriceVal > 0 && !(Number(existingItem.old_price) > 0)) {
-                    existingItem.old_price = oldPriceVal;
+                if (existingItem.quantity >= MAX_QTY_PER_LINE) {
+                    showNotice(`أقصى كمية للمنتج الواحد ${MAX_QTY_PER_LINE} قطعة.`);
+                    return;
                 }
+                existingItem.quantity += 1;
+                existingItem.price = parseFloat(price) || existingItem.price;
             } else {
                 cart.push({
                     id,
                     name,
                     price: parseFloat(price) || 0,
-                    old_price: oldPriceVal,
                     size,
                     quantity: 1
                 });
@@ -783,7 +779,8 @@
 
         function getShippingFee() {
             const select = document.getElementById('customer-governorate');
-            return select ? (parseFloat(select.value) || 0) : 0;
+            const option = select ? select.options[select.selectedIndex] : null;
+            return option ? (parseFloat(option.dataset.cost) || 0) : 0;
         }
 
         function updateAddressPlaceholder() {
@@ -806,9 +803,7 @@
         }
 
         function updateCartUI() {
-            try {
-                sessionStorage.setItem('zill_cart_v1', JSON.stringify(cart));
-            } catch (e) {}
+            storeSet('session', 'zill_cart_v1', JSON.stringify(cart));
             updateAddressPlaceholder();
             document.getElementById('cart-count').innerText = cart.reduce((sum, item) => sum + item.quantity, 0);
             const container = document.getElementById('cart-items-container');
@@ -835,7 +830,7 @@
                 <div class="py-2.5 flex justify-between items-center gap-3 text-xs">
                     <div class="min-w-0 flex-1">
                         <p class="font-bold text-neutral-900 truncate">${escapeHTML(item.name)}</p>
-                        <p class="text-neutral-500 mt-0.5">المقاس: <span class="font-semibold text-neutral-700">${escapeHTML(item.size)}</span> · ${item.price} EGP × ${item.quantity}</p>
+                        <p class="text-neutral-500 mt-0.5">المقاس: <span class="font-semibold text-neutral-700">${escapeHTML(item.size)}</span> · ${Number(item.price) || 0} EGP × ${Number(item.quantity) || 1}</p>
                     </div>
                     <button type="button" data-remove-index="${index}" class="text-red-500 hover:text-red-700 hover:underline shrink-0 px-2 py-1">حذف</button>
                 </div>
@@ -845,7 +840,7 @@
             document.getElementById('products-subtotal').innerText = totals.subtotal + ' EGP';
             if (discountRow && discountLabel && discountAmountEl) {
                 if (appliedPromo && totals.discountAmount > 0) {
-                    discountLabel.textContent = `الخصم (${appliedPromo.code} - ${appliedPromo.percent}%):`;
+                    discountLabel.textContent = `الخصم (${appliedPromo.code}):`;
                     discountAmountEl.textContent = `-${totals.discountAmount} EGP`;
                     discountRow.classList.remove('hidden');
                     discountRow.classList.add('flex');
@@ -858,34 +853,30 @@
             document.getElementById('cart-total').innerText = totals.total + ' EGP';
         }
 
-        function jsLiteral(value) {
-            return JSON.stringify(String(value ?? '')).replace(/'/g, '\\u0027');
-        }
-
         function escapeHTML(value) {
             return String(value ?? '').replace(/[&<>"']/g, char => ({
                 '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
             }[char]));
         }
 
-        function removeFromCart(idOrIndex, size) {
-            if (typeof idOrIndex === 'number' && size === undefined) {
-                cart.splice(idOrIndex, 1);
-            } else {
-                cart = cart.filter(item => !(String(item.id) === String(idOrIndex) && item.size === size));
-            }
-            updateCartUI();
-        }
-
+        // كل الضغطات على الأزرار المتولدة بالـ JS (بدل onclick جوه الـ HTML)
         document.addEventListener('click', (event) => {
-            const removeBtn = event.target.closest('[data-remove-index]');
-            if (removeBtn) {
-                const idx = Number(removeBtn.getAttribute('data-remove-index'));
+            const target = event.target.closest('[data-remove-index], [data-action]');
+            if (!target) return;
+            if (target.hasAttribute('data-remove-index')) {
+                const idx = Number(target.getAttribute('data-remove-index'));
                 if (!Number.isNaN(idx) && idx >= 0 && idx < cart.length) {
                     cart.splice(idx, 1);
                     updateCartUI();
                 }
+                return;
             }
+            const action = target.getAttribute('data-action');
+            if (action === 'open-details') openProductDetails(target.getAttribute('data-id'));
+            else if (action === 'slide') changeSlide(target.getAttribute('data-id'), Number(target.getAttribute('data-dir')) || 1);
+            else if (action === 'select-size') selectDetailSize(target.getAttribute('data-size'));
+            else if (action === 'select-image') selectDetailImage(Number(target.getAttribute('data-index')));
+            else if (action === 'retry-load') fetchProducts();
         });
 
         function toggleCartModal() {
@@ -898,138 +889,189 @@
 
         function sanitizePhoneInput(inputEl) {
             if (!inputEl) return;
-            const digitsOnly = String(inputEl.value || '').replace(/[^0-9]/g, '').slice(0, 11);
+            const digitsOnly = toAsciiDigits(inputEl.value).replace(/[^0-9]/g, '').slice(0, 11);
             if (inputEl.value !== digitsOnly) {
                 inputEl.value = digitsOnly;
             }
         }
 
+        // --- رسائل داخل الصفحة (بدل alert) ---
+        function showNotice(message, title = 'تنبيه') {
+            const modal = document.getElementById('notice-modal');
+            if (!modal) return;
+            document.getElementById('notice-title').textContent = title;
+            document.getElementById('notice-text').textContent = message;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeNotice() {
+            const modal = document.getElementById('notice-modal');
+            if (!modal) return;
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function setConfirmBusy(busy, label) {
+            const btn = document.getElementById('confirm-order-btn');
+            if (!btn) return;
+            btn.disabled = !!busy;
+            btn.textContent = busy ? (label || 'جاري إرسال الطلب...') : 'تأكيد الاوردر ✅';
+        }
+
+        // رقم مرجعي لكل محاولة: لو العميل أعاد الإرسال بعد انقطاع النت السيرفر ميكررش الأوردر
+        let orderRef = null;
+        let orderRefSignature = '';
+        let orderInFlight = false;
+
+        function makeOrderRef() {
+            try {
+                if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
+            } catch (e) {}
+            return Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12);
+        }
+
+        function onOrderSuccess(res, customerName) {
+            orderRef = null;
+            orderRefSignature = '';
+            cart = [];
+            appliedPromo = null;
+            storeRemove('session', 'zill_cart_v1');
+            document.getElementById('customer-name').value = '';
+            document.getElementById('customer-phone').value = '';
+            document.getElementById('customer-governorate').value = '';
+            document.getElementById('customer-address').value = '';
+            const promoInputEl = document.getElementById('promo-code-input');
+            if (promoInputEl) promoInputEl.value = '';
+            showPromoMessage('', false);
+            updateCartUI();
+            const cartModal = document.getElementById('cart-modal'); cartModal.classList.add('hidden'); cartModal.classList.remove('flex');
+            let text = `تم إرسال طلبك يا ${customerName}. سنتواصل معك قريباً لتأكيد الطلب.`;
+            if (res.order_id) text += `\nرقم الطلب: ${res.order_id}`;
+            showNotice(text, 'تم استلام طلبك');
+        }
+
+        async function handleOrderError(res) {
+            let message = res.message || 'حصلت مشكلة في إرسال الطلب. راجع اتصال الإنترنت وحاول مرة أخرى.';
+            if (res.code === 'PROMO_INVALID' || res.code === 'PROMO_EXHAUSTED') {
+                appliedPromo = null;
+                showPromoMessage(message, false);
+                updateCartUI();
+            } else if (res.code === 'PRICE_CHANGED' || res.code === 'ITEM_UNAVAILABLE' || res.code === 'SIZE_INVALID') {
+                // نحدّث الأسعار والسلة من السيرفر قبل ما نعرض الرسالة
+                await Promise.all([fetchProducts(), revalidateAppliedPromo()]);
+                updateCartUI();
+                if (res.code === 'PRICE_CHANGED' && cart.length) {
+                    message += `\nالإجمالي الجديد: ${calculateOrderTotals().total} EGP`;
+                }
+            }
+            showNotice(message);
+        }
+
         async function confirmOrder() {
+            if (orderInFlight) return;
             if (cart.length === 0) {
-                alert('السلة فارغة!');
+                showNotice('السلة فارغة!');
                 return;
             }
 
             const name = document.getElementById('customer-name').value.trim();
-            const phone = document.getElementById('customer-phone').value.trim();
+            const phone = toAsciiDigits(document.getElementById('customer-phone').value).replace(/[^0-9]/g, '');
             const govSelect = document.getElementById('customer-governorate');
-            const gov = govSelect.value;
-            const governorateName = govSelect.options[govSelect.selectedIndex]?.dataset.governorate
-                || govSelect.options[govSelect.selectedIndex]?.textContent.trim() || '';
+            const selectedOption = govSelect.options[govSelect.selectedIndex];
+            const governorateName = selectedOption?.dataset.governorate || selectedOption?.textContent.trim() || '';
             const address = document.getElementById('customer-address').value.trim();
 
-            if (!name || !phone || gov === '0' || !address) {
-                alert('يرجى ملء كافة بيانات الشحن واختيار المحافظة.');
+            if (!name || !phone || !govSelect.value || !address) {
+                showNotice('يرجى ملء كافة بيانات الشحن واختيار المحافظة.');
                 return;
             }
 
-            const cleanPhone = phone.replace(/[^0-9]/g, '');
-            if (cleanPhone.length !== 11) {
-                alert('في مشكلة في رقم الهاتف: يجب أن يتكون من 11 رقماً.');
+            if (!/^01[0125]\d{8}$/.test(phone)) {
+                showNotice('في مشكلة في رقم الهاتف: يجب أن يتكون من 11 رقماً ويبدأ بـ 010 أو 011 أو 012 أو 015.');
                 document.getElementById('customer-phone')?.focus();
                 return;
             }
 
-            const promoInputEl = document.getElementById('promo-code-input');
-            const rawPromoTyped = String(promoInputEl?.value || '').trim();
-            if (rawPromoTyped && (!appliedPromo || appliedPromo.code.toLowerCase() !== rawPromoTyped.toLowerCase())) {
-                const matchedPromo = promoCodesList.find(item => item.code.toLowerCase() === rawPromoTyped.toLowerCase());
-                if (matchedPromo) {
-                    if (isPromoExhausted(matchedPromo)) {
-                        appliedPromo = null;
-                        alert('تم انتهاء عدد مرات الاستخدام المسموح بها لهذا الكود.');
+            // لو الأسعار أو المنتجات اتغيّرت من وقت ما العميل ضاف للسلة: نعرضله الجديد الأول
+            if (syncCartWithProducts()) {
+                updateCartUI();
+                showNotice('تم تحديث السلة لأن بعض الأسعار أو المنتجات اتغيّرت. راجع الإجمالي وأكّد الطلب تاني.');
+                return;
+            }
+
+            orderInFlight = true;
+            try {
+                // كود خصم مكتوب ومش متطبّق: نتحقق منه من السيرفر الأول
+                const promoInputEl = document.getElementById('promo-code-input');
+                const rawPromoTyped = String(promoInputEl?.value || '').trim();
+                if (rawPromoTyped && (!appliedPromo || appliedPromo.code.toLowerCase() !== rawPromoTyped.toLowerCase())) {
+                    setConfirmBusy(true, 'جاري التحقق من الكود...');
+                    let promoRes;
+                    try {
+                        promoRes = await apiPost({ action: 'validate_promo', code: rawPromoTyped }, 15000);
+                    } catch (err) {
+                        console.error('Promo check error:', err);
+                        showNotice('تعذر التحقق من كود الخصم. راجع اتصال الإنترنت وحاول مرة أخرى.');
                         return;
                     }
-                    appliedPromo = {
-                        code: matchedPromo.code,
-                        percent: matchedPromo.percent,
-                        maxUses: matchedPromo.maxUses,
-                        usedCount: matchedPromo.usedCount
-                    };
-                    showPromoMessage(`تم تطبيق كود (${matchedPromo.code}) بخصم ${matchedPromo.percent}%`, true);
-                } else {
-                    alert('كود الخصم المكتوب غير صحيح. عدّله أو امسحه لتأكيد الطلب بدون خصم.');
-                    return;
-                }
-            }
-
-            const totals = calculateOrderTotals();
-            const orderItems = cart.map(item => ({
-                id: item.id,
-                name: item.name,
-                price: item.price,
-                size: item.size,
-                quantity: item.quantity
-            }));
-
-            const confirmButton = document.querySelector('#cart-modal button[onclick="confirmOrder()"]');
-            if (confirmButton) {
-                confirmButton.disabled = true;
-                confirmButton.textContent = 'جاري إرسال الطلب...';
-            }
-
-            try {
-                await fetch(WEB_APP_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify({
-                        customer_name: name,
-                        phone: cleanPhone,
-                        governorate: governorateName,
-                        address: address,
-                        promo_code: appliedPromo ? appliedPromo.code : '',
-                        discount_percent: appliedPromo ? appliedPromo.percent : 0,
-                        discount_amount: totals.discountAmount,
-                        discount_base_subtotal: totals.discountBaseSubtotal,
-                        items: JSON.stringify({
-                            products: orderItems,
-                            subtotal: totals.subtotal,
-                            discount_base_subtotal: totals.discountBaseSubtotal,
-                            promo_code: appliedPromo ? appliedPromo.code : '',
-                            discount_percent: appliedPromo ? appliedPromo.percent : 0,
-                            discount_amount: totals.discountAmount,
-                            shipping: totals.shippingFee
-                        }),
-                        total: totals.total
-                    })
-                });
-
-                if (appliedPromo) {
-                    const usedItem = promoCodesList.find(p => p.code.toLowerCase() === appliedPromo.code.toLowerCase());
-                    if (usedItem) {
-                        usedItem.usedCount = (Number(usedItem.usedCount) || 0) + 1;
+                    if (promoRes.result === 'success' && promoRes.valid) {
+                        appliedPromo = { code: String(promoRes.code), percent: Number(promoRes.percent) || 0 };
+                        showPromoMessage(`تم تطبيق كود (${appliedPromo.code})`, true);
+                        updateCartUI();
+                    } else {
+                        appliedPromo = null;
+                        updateCartUI();
+                        showNotice(promoRes.reason === 'exhausted'
+                            ? 'تم انتهاء عدد مرات الاستخدام المسموح بها لهذا الكود.'
+                            : 'كود الخصم المكتوب غير صحيح. عدّله أو امسحه لتأكيد الطلب بدون خصم.');
+                        return;
                     }
                 }
-                alert(`تم إرسال طلبك يا ${name}. سنتواصل معك قريباً لتأكيد الطلب.`);
-                cart = [];
-                appliedPromo = null;
-                try { sessionStorage.removeItem('zill_cart_v1'); } catch (e) {}
-                document.getElementById('customer-name').value = '';
-                document.getElementById('customer-phone').value = '';
-                document.getElementById('customer-governorate').value = '0';
-                document.getElementById('customer-address').value = '';
-                if (promoInputEl) promoInputEl.value = '';
-                showPromoMessage('', false);
-                updateCartUI();
-                const cartModal = document.getElementById('cart-modal'); cartModal.classList.add('hidden'); cartModal.classList.remove('flex');
+
+                const totals = calculateOrderTotals();
+                const orderItems = cart.map(item => ({ id: item.id, size: item.size, quantity: item.quantity }));
+                const signature = JSON.stringify([orderItems, name, phone, governorateName, address, appliedPromo ? appliedPromo.code : '']);
+                if (!orderRef || signature !== orderRefSignature) {
+                    orderRef = makeOrderRef();
+                    orderRefSignature = signature;
+                }
+
+                setConfirmBusy(true, 'جاري إرسال الطلب...');
+                // السيرفر بيحسب الأسعار والشحن والخصم من الشيت. total هنا بس عشان يتأكد إن العميل شاف نفس الرقم.
+                const res = await apiPost({
+                    action: 'create_order',
+                    ref: orderRef,
+                    customer_name: name,
+                    phone: phone,
+                    governorate: governorateName,
+                    address: address,
+                    promo_code: appliedPromo ? appliedPromo.code : '',
+                    items: orderItems,
+                    expected_total: totals.total,
+                    elapsed_ms: Date.now() - PAGE_LOADED_AT,
+                    hp_extra: String(document.getElementById('hp-order')?.value || '')
+                }, 30000);
+
+                if (res.result === 'success') {
+                    onOrderSuccess(res, name);
+                } else {
+                    await handleOrderError(res);
+                }
             } catch (error) {
                 console.error('Order submission error:', error);
-                alert('حصلت مشكلة في إرسال الطلب. راجع اتصال الإنترنت وحاول مرة أخرى.');
+                showNotice('معرفناش نتأكد إن الطلب وصل (مشكلة في الاتصال). الطلب لسه في السلة، اضغط تأكيد الاوردر تاني. ولو كان وصل فعلاً مش هيتكرر.', 'تعذر إرسال الطلب');
             } finally {
-                if (confirmButton) {
-                    confirmButton.disabled = false;
-                    confirmButton.textContent = 'تأكيد الاوردر ✅';
-                }
+                orderInFlight = false;
+                setConfirmBusy(false);
             }
         }
 
         // --- ربط Google Sheets ---
-        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzDxwMRuOJk8QnRQfOekAJ0H313yC59pyUlb3FV9oZjQAR775_aoHAaRl34PkNsv1Tk/exec';
         let allProducts = [];
         let activeCategory = 'All';
         let categoryStatesMap = {};
-        let activeOffers = [];
+        let lastOffers = [];
         window.slideIndices = {};
 
         function isArabicText(text) {
@@ -1050,7 +1092,7 @@
                 })
                 .sort((a, b) => (Number(a.order) || 0) - (Number(b.order) || 0));
 
-            activeOffers = validOffers;
+            lastOffers = offers;
 
             if (!validOffers.length) {
                 track.innerHTML = '';
@@ -1065,10 +1107,17 @@
                 `<span class="offer-item"><span>${escapeHTML(String(item.text))}</span></span>`
             ).join('');
 
-            track.innerHTML = items + items;
             bar.style.display = 'block';
             track.style.animationName = arabicFirst ? 'zillOffersLTR' : 'zillOffersRTL';
-            track.style.animationDuration = (validOffers.length === 1 ? 18 : Math.min(30, 14 + validOffers.length * 4)) + 's';
+            const baseDuration = (validOffers.length === 1 ? 18 : Math.min(30, 14 + validOffers.length * 4));
+
+            // نكرر العروض لحد ما تملأ عرض الشاشة عشان ميبانش فراغ لو العرض قصير
+            track.innerHTML = items;
+            const setWidth = track.scrollWidth || 1;
+            const repeat = Math.max(1, Math.ceil((bar.clientWidth || window.innerWidth || 1) / setWidth));
+            const block = items.repeat(repeat);
+            track.innerHTML = block + block;
+            track.style.animationDuration = (baseDuration * repeat) + 's';
         }
 
         function sanitizeBgColor(colorValue) {
@@ -1081,11 +1130,26 @@
             return probe.style.backgroundColor ? withHash : '#ffffff';
         }
 
+        // "1,200" / "١٢٠٠" / "1200 EGP" / 1200  ->  1200   (نفس منطق السيرفر)
+        function parsePriceValue(value) {
+            if (typeof value === 'number') return Number.isFinite(value) ? value : 0;
+            const cleaned = toAsciiDigits(value).replace(/[٬,\s]/g, '').replace(/٫/g, '.');
+            const match = cleaned.match(/-?\d+(?:\.\d+)?/);
+            const num = match ? parseFloat(match[0]) : 0;
+            return Number.isFinite(num) ? num : 0;
+        }
+
+        // روابط الصور: سطر جديد أو ; أو | أو فاصلة قبل رابط جديد (فاصلة جوه الرابط زي w_500,h_500 مبتتقسمش)
+        function splitImageUrls(value) {
+            if (Array.isArray(value)) return value.map(url => String(url || '').trim()).filter(Boolean);
+            return String(value || '')
+                .split(/[;\n|]+|,(?=\s|https?:\/\/|\/\/|\/|data:|[^,\s\/]+\.(?:jpe?g|png|webp|gif|avif|svg)\b)/i)
+                .map(url => url.trim())
+                .filter(Boolean);
+        }
+
         function normalizeProduct(product) {
-            const imageValue = product.image_url || '';
-            const images = Array.isArray(imageValue)
-                ? imageValue
-                : String(imageValue).split(/[,;\n]/).map(url => url.trim()).filter(Boolean);
+            const images = splitImageUrls(product.image_url || '');
 
             const rawBg = product.color_background
                 ?? product.background_color
@@ -1100,12 +1164,12 @@
             return {
                 id: safeId,
                 name: product.name || 'منتج بدون اسم',
-                price: Number(product.price) || 0,
-                old_price: Number(product.old_price) || 0,
+                price: parsePriceValue(product.price),
+                old_price: parsePriceValue(product.old_price),
                 sizes: product.sizes || '',
                 stock_alert: product.stock_alert || '',
                 category: String(product.category || 'Hoodies').trim() || 'Hoodies',
-                images: images.join(','),
+                images: images,
                 bg_color: sanitizeBgColor(rawBg),
                 description: product.description || ''
             };
@@ -1113,14 +1177,22 @@
 
         function populateShipping(shippingRows) {
             const select = document.getElementById('customer-governorate');
-            if (!Array.isArray(shippingRows) || shippingRows.length === 0) return;
+            if (!select || !Array.isArray(shippingRows) || shippingRows.length === 0) return;
 
-            shippingOptions = shippingRows;
-            select.innerHTML = '<option value="0">اختر المحافظة...</option>' + shippingRows.map(row => {
+            // نفتكر المحافظة المختارة عشان تحديث البيانات ميمسحهاش
+            const previous = select.options[select.selectedIndex];
+            const previousName = previous && previous.value ? (previous.dataset.governorate || '') : '';
+
+            select.innerHTML = '<option value="">اختر المحافظة...</option>' + shippingRows.map((row, index) => {
                 const governorate = String(row.governorate || '').trim();
-                const cost = Number(row.cost) || 0;
-                return `<option value="${cost}" data-governorate="${escapeHTML(governorate)}">${escapeHTML(governorate)} (${cost} EGP)</option>`;
+                const cost = Math.max(0, parsePriceValue(row.cost));
+                return `<option value="g-${index}" data-cost="${cost}" data-governorate="${escapeHTML(governorate)}">${escapeHTML(governorate)} (${cost} EGP)</option>`;
             }).join('');
+
+            if (previousName) {
+                const match = Array.from(select.options).find(option => option.dataset.governorate === previousName);
+                if (match) select.value = match.value;
+            }
             updateCartUI();
         }
 
@@ -1168,11 +1240,12 @@
                 .filter(item => item && item.name);
         }
 
+        const STORE_CACHE_KEY = 'zill_store_cache_v2';
+
         function readCachedStore() {
-            const cacheKey = 'zill_store_cache_v1';
-            for (const store of [sessionStorage, localStorage]) {
+            for (const kind of ['session', 'local']) {
                 try {
-                    const raw = store.getItem(cacheKey);
+                    const raw = storeGet(kind, STORE_CACHE_KEY);
                     if (raw) {
                         const parsed = JSON.parse(raw);
                         if (parsed && Array.isArray(parsed.products)) return parsed;
@@ -1183,14 +1256,44 @@
         }
 
         function writeCachedStore(data) {
-            const cacheKey = 'zill_store_cache_v1';
-            const serialized = JSON.stringify(data);
-            try { sessionStorage.setItem(cacheKey, serialized); } catch (e) {}
-            try { localStorage.setItem(cacheKey, serialized); } catch (e) {}
+            let serialized;
+            try {
+                serialized = JSON.stringify({
+                    products: data.products,
+                    shipping: data.shipping,
+                    categories: data.categories,
+                    offers: data.offers
+                });
+            } catch (e) { return; }
+            storeSet('session', STORE_CACHE_KEY, serialized);
+            storeSet('local', STORE_CACHE_KEY, serialized);
+        }
+
+        // يحدّث أسعار السلة من أحدث بيانات ويشيل أي منتج/مقاس اتشال. بيرجع true لو اتغيّر حاجة
+        function syncCartWithProducts() {
+            if (!cart.length || !allProducts.length) return false;
+            let changed = false;
+            cart = cart.filter(item => {
+                const product = allProducts.find(p => String(p.id) === String(item.id));
+                const sizes = product ? getProductSizes(product).map(size => size.toLowerCase()) : [];
+                if (!product || !(product.price > 0) || !sizes.includes(String(item.size).toLowerCase())) {
+                    changed = true;
+                    return false;
+                }
+                if (Number(item.price) !== product.price) {
+                    item.price = product.price;
+                    changed = true;
+                }
+                if (product.name) item.name = product.name;
+                return true;
+            });
+            return changed;
         }
 
         function applyStoreData(data) {
-            allProducts = (Array.isArray(data.products) ? data.products : []).map(normalizeProduct);
+            allProducts = (Array.isArray(data.products) ? data.products : [])
+                .map(normalizeProduct)
+                .filter(product => product.price > 0);
             const hasCategoriesTab = Array.isArray(data.categories);
             const sheetCats = hasCategoriesTab ? extractSheetCategories(data.categories) : [];
             categoryStatesMap = {};
@@ -1202,60 +1305,77 @@
                 activeCategory = 'All';
             }
 
-            promoCodesList = extractPromoCodes(data);
             setupCategories(allProducts, sheetCats, hasCategoriesTab);
             filterProducts();
             populateShipping(data.shipping);
             renderOffersBar(data.offers);
-            if (appliedPromo) {
-                const stillValid = promoCodesList.find(item => item.code.toLowerCase() === appliedPromo.code.toLowerCase());
-                if (stillValid && !isPromoExhausted(stillValid)) {
-                    appliedPromo = {
-                        code: stillValid.code,
-                        percent: stillValid.percent,
-                        maxUses: stillValid.maxUses,
-                        usedCount: stillValid.usedCount
-                    };
-                } else {
-                    appliedPromo = null;
-                    showPromoMessage(stillValid ? 'تم انتهاء عدد مرات الاستخدام المسموح بها لهذا الكود.' : '', false);
-                }
-                updateCartUI();
+
+            const cartChanged = syncCartWithProducts();
+            updateCartUI();
+            const cartModal = document.getElementById('cart-modal');
+            if (cartChanged && cartModal && !cartModal.classList.contains('hidden')) {
+                showNotice('تم تحديث السلة لأن بعض الأسعار أو المنتجات اتغيّرت. راجع الإجمالي قبل التأكيد.');
             }
         }
 
-        async function fetchProducts() {
-            const grid = document.getElementById('products-grid');
-            const cachedData = readCachedStore();
-            if (cachedData) {
-                applyStoreData(cachedData);
-            }
-
+        async function fetchStoreOnce(timeoutMs) {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 9000);
-
+            const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
             try {
                 const response = await fetch(`${WEB_APP_URL}?t=${Date.now()}`, {
                     signal: controller.signal,
                     cache: 'no-store'
                 });
-                clearTimeout(timeoutId);
                 if (!response.ok) throw new Error('HTTP ' + response.status);
                 const data = await response.json();
-                try {
-                    sessionStorage.removeItem('zill_store_cache_v1');
-                    localStorage.removeItem('zill_store_cache_v1');
-                } catch (e) {}
-                writeCachedStore(data);
-                applyStoreData(data);
-            } catch (error) {
+                // لو السيرفر رجّع خطأ نسيب الكاش السليم زي ما هو
+                if (!data || !Array.isArray(data.products)) throw new Error('Bad store data');
+                return data;
+            } finally {
                 clearTimeout(timeoutId);
-                console.error('خطأ في جلب بيانات Google Sheets:', error);
-                if (!allProducts.length && grid) {
-                    setupCategories(allProducts);
-                    grid.innerHTML = `<p class="col-span-3 text-center text-neutral-400 py-12">تعذر تحميل المنتجات من المتجر. حاول تحديث الصفحة بعد قليل.</p>`;
+            }
+        }
+
+        let storeLoadInFlight = null;
+
+        function fetchProducts() {
+            if (!storeLoadInFlight) {
+                storeLoadInFlight = loadStore().finally(() => { storeLoadInFlight = null; });
+            }
+            return storeLoadInFlight;
+        }
+
+        async function loadStore() {
+            const grid = document.getElementById('products-grid');
+            const cachedData = readCachedStore();
+            if (cachedData) {
+                applyStoreData(cachedData);
+            } else if (grid && !allProducts.length) {
+                grid.innerHTML = `<p class="col-span-full text-center text-neutral-400 py-12">جاري تحميل المنتجات...</p>`;
+            }
+
+            let lastError = null;
+            for (let attempt = 0; attempt < 2; attempt++) {
+                try {
+                    const data = await fetchStoreOnce(9000);
+                    writeCachedStore(data);
+                    applyStoreData(data);
+                    return true;
+                } catch (error) {
+                    lastError = error;
+                    if (attempt === 0) await new Promise(resolve => setTimeout(resolve, 1500));
                 }
             }
+
+            console.error('خطأ في جلب بيانات Google Sheets:', lastError);
+            if (!allProducts.length && grid) {
+                setupCategories(allProducts);
+                grid.innerHTML = `<div class="col-span-full text-center py-12">
+                        <p class="text-neutral-400">تعذر تحميل المنتجات من المتجر. حاول تحديث الصفحة بعد قليل.</p>
+                        <button type="button" data-action="retry-load" class="mt-4 bg-black text-white px-5 py-2 rounded-full text-xs font-semibold hover:bg-neutral-800 transition">إعادة المحاولة</button>
+                    </div>`;
+            }
+            return false;
         }
 
         function setupCategories(products, sheetCategories = [], hasCategoriesTab = false) {
@@ -1350,7 +1470,7 @@
             }
 
             grid.innerHTML = productsToDisplay.map(product => {
-                const imageList = product.images ? product.images.split(',').map(url => url.trim()).filter(Boolean) : [];
+                const imageList = Array.isArray(product.images) ? product.images : [];
                 const slideKey = encodeURIComponent(String(product.id));
                 if (window.slideIndices[slideKey] === undefined) window.slideIndices[slideKey] = 0;
                 const currentIndex = window.slideIndices[slideKey];
@@ -1371,8 +1491,8 @@
                         <div class="relative w-full h-64 md:h-72 rounded-xl overflow-hidden mb-4 group border border-neutral-100" style="background-color: ${bgColor};">
                             ${imageHTML}
                             ${imageList.length > 1 ? `
-                                <button onclick='changeSlide(${jsLiteral(product.id)}, -1)' class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/85 hover:bg-white px-2 py-1 rounded-full text-xs shadow transition">❮</button>
-                                <button onclick='changeSlide(${jsLiteral(product.id)}, 1)' class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/85 hover:bg-white px-2 py-1 rounded-full text-xs shadow transition">❯</button>
+                                <button type="button" data-action="slide" data-dir="-1" data-id="${escapeHTML(String(product.id))}" aria-label="الصورة السابقة" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/85 hover:bg-white px-2 py-1 rounded-full text-xs shadow transition">❮</button>
+                                <button type="button" data-action="slide" data-dir="1" data-id="${escapeHTML(String(product.id))}" aria-label="الصورة التالية" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/85 hover:bg-white px-2 py-1 rounded-full text-xs shadow transition">❯</button>
                             ` : ''}
                         </div>
                         <div>
@@ -1381,7 +1501,7 @@
                         </div>
                         <div class="flex justify-between items-center mt-6 pt-4 border-t border-neutral-100">
                             ${priceHTML}
-                            <button onclick='openProductDetails(${jsLiteral(product.id)})' class="bg-black text-white px-4 py-2 rounded-full text-xs font-semibold hover:bg-neutral-800 transition">عرض التفاصيل</button>
+                            <button type="button" data-action="open-details" data-id="${escapeHTML(String(product.id))}" class="bg-black text-white px-4 py-2 rounded-full text-xs font-semibold hover:bg-neutral-800 transition">عرض التفاصيل</button>
                         </div>
                     </div>
                 `;
@@ -1393,12 +1513,16 @@
         let selectedDetailImage = 0;
 
         function getProductImages(product) {
-            if (!product || !product.images) return [];
-            return String(product.images).split(/[,;\n]/).map(url => url.trim()).filter(Boolean);
+            if (!product || !Array.isArray(product.images)) return [];
+            return product.images;
         }
 
+        // المقاسات: لو فيه فاصلة أو ; أو | أو سطر جديد بنقسم بيهم (وتفضل / جوه المقاس زي S/M)، ولو مفيش بنقسم على /
+        // (لازم تفضل مطابقة لـ parseSizes_ في Code.gs)
         function getProductSizes(product) {
-            return String(product?.sizes || '').split(/[,;|\n/]+/).map(size => size.trim()).filter(Boolean);
+            const raw = String(product?.sizes ?? '');
+            const parts = /[,،;|\n]/.test(raw) ? raw.split(/[,،;|\n]+/) : raw.split('/');
+            return parts.map(size => size.trim()).filter(Boolean);
         }
 
         function openProductDetails(productId) {
@@ -1440,7 +1564,7 @@
                 return;
             }
             main.innerHTML = `<img src="${escapeHTML(images[selectedDetailImage] || images[0])}" class="w-full h-full object-contain p-3" alt="${escapeHTML(selectedDetailProduct.name)}">`;
-            thumbs.innerHTML = images.map((url, index) => `<button type="button" onclick="selectDetailImage(${index})" class="w-16 h-20 flex-shrink-0 rounded-lg overflow-hidden border-2 ${index === selectedDetailImage ? 'border-black' : 'border-transparent'}" style="background-color: ${bgColor};"><img src="${escapeHTML(url)}" class="w-full h-full object-contain p-1"></button>`).join('');
+            thumbs.innerHTML = images.map((url, index) => `<button type="button" data-action="select-image" data-index="${index}" aria-label="صورة ${index + 1}" class="w-16 h-20 flex-shrink-0 rounded-lg overflow-hidden border-2 ${index === selectedDetailImage ? 'border-black' : 'border-transparent'}" style="background-color: ${bgColor};"><img src="${escapeHTML(url)}" class="w-full h-full object-contain p-1"></button>`).join('');
         }
 
         function selectDetailImage(index) {
@@ -1465,13 +1589,13 @@
             hint.textContent = 'لازم تختار مقاس قبل الإضافة للسلة.';
             button.disabled = true;
             button.classList.add('opacity-40', 'cursor-not-allowed');
-            container.innerHTML = sizes.map(size => `<button type="button" class="size-option" onclick='selectDetailSize(${jsLiteral(size)})'>${escapeHTML(size)}</button>`).join('');
+            container.innerHTML = sizes.map(size => `<button type="button" class="size-option" data-action="select-size" data-size="${escapeHTML(size)}">${escapeHTML(size)}</button>`).join('');
         }
 
         function selectDetailSize(size) {
             selectedDetailSize = size;
             document.querySelectorAll('#detail-sizes .size-option').forEach(button => {
-                const selected = button.textContent === size;
+                const selected = button.dataset.size === size;
                 button.classList.toggle('selected', selected);
             });
             document.getElementById('detail-size-hint').textContent = `المقاس المختار: ${size}`;
@@ -1483,7 +1607,7 @@
         function addSelectedProductToCart() {
             if (!selectedDetailProduct) return;
             if (!selectedDetailSize) {
-                alert('من فضلك اختار المقاس الأول.');
+                showNotice('من فضلك اختار المقاس الأول.');
                 return;
             }
             addToCart(selectedDetailProduct.id, selectedDetailProduct.name, selectedDetailProduct.price, selectedDetailSize);
@@ -1515,6 +1639,7 @@
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
+                closeNotice();
                 closeToast();
                 closeProductDetails();
                 const cartModal = document.getElementById('cart-modal');
@@ -1530,10 +1655,25 @@
             }
         });
 
-        window.onload = () => {
+        // شريط العروض: نعيد الحساب لو عرض الشاشة اتغيّر أو الخط اتحمّل
+        let offersResizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(offersResizeTimer);
+            offersResizeTimer = setTimeout(() => { if (lastOffers && lastOffers.length) renderOffersBar(lastOffers); }, 250);
+        });
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(() => { if (lastOffers && lastOffers.length) renderOffersBar(lastOffers); }).catch(() => {});
+        }
+
+        function initStore() {
+            // تنضيف بيانات قديمة كانت بتتخزن على جهاز العميل (إيميلات + قائمة أكواد خصم)
+            storeRemove('local', 'zill_registered_emails_v1');
+            storeRemove('session', 'zill_store_cache_v1');
+            storeRemove('local', 'zill_store_cache_v1');
+
             const introSeenKey = 'zill_intro_seen_v1';
 
-            if (sessionStorage.getItem(introSeenKey) === '1') {
+            if (storeGet('session', introSeenKey) === '1') {
                 const screen = document.getElementById('intro-screen');
                 if (screen) {
                     screen.style.display = 'none';
@@ -1541,20 +1681,19 @@
                 }
             } else {
                 startIntroSequence();
-                sessionStorage.setItem(introSeenKey, '1');
+                storeSet('session', introSeenKey, '1');
             }
 
-            const initAllBtn = document.querySelector('#categories-container .category-btn');
-            if (initAllBtn) {
-                initAllBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    filterCategory('All');
-                });
-            }
             updateAccountUI();
             updateCartUI();
             fetchProducts();
-        };
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initStore);
+        } else {
+            initStore();
+        }
     </script>
 </body>
 </html>
