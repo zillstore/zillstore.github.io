@@ -49,15 +49,15 @@
             transform: translateY(0);
         }
 
-        /* نص العروض المتحرك بدون لون خلفية محدد في الوضعين الغامق والفاتح */
+        /* شريط العروض بدون لون خلفية ثابت — يتبع خلفية الصفحة والوضع تلقائياً */
         #offers-bar {
             width: 100%;
             height: 32px;
             overflow: hidden;
             position: relative;
-            background: transparent !important;
-            background-color: transparent !important;
-            color: var(--ink) !important;
+            background: transparent;
+            background-color: transparent;
+            color: inherit;
             display: none;
             white-space: nowrap;
             direction: ltr;
@@ -65,9 +65,9 @@
         }
         html.dark #offers-bar,
         html:not(.dark) #offers-bar {
-            background: transparent !important;
-            background-color: transparent !important;
-            color: var(--ink) !important;
+            background: transparent;
+            background-color: transparent;
+            color: inherit;
         }
         #offers-track {
             display: flex;
@@ -90,8 +90,8 @@
             font-size: 11.5px;
             font-weight: 600;
             letter-spacing: .2px;
-            color: var(--ink) !important;
-            background: transparent !important;
+            color: inherit;
+            background: transparent;
             white-space: nowrap;
             direction: rtl;
         }
@@ -191,8 +191,8 @@
         .cart-btn .cart-count { background: var(--paper) !important; color: var(--ink) !important; }
 
         /* شريط العروض بدون لون خلفية محدد في الوضعين الغامق والفاتح */
-        #offers-bar { background: transparent !important; color: var(--ink) !important; }
-        .offer-item { color: var(--ink) !important; opacity: .88; }
+        #offers-bar { background: transparent; background-color: transparent; color: var(--ink); }
+        .offer-item { color: var(--ink); background: transparent; opacity: .88; }
 
         /* الواجهة الرئيسية */
         .hero { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 48px 20px 34px; min-height: min(80vh, 660px); --lx: 50%; --ly: 30%; }
@@ -908,9 +908,10 @@
                 if (myRequest !== promoRequestId) return;
                 if (res.result === 'success' && res.valid) {
                     appliedPromo = { code: String(res.code), percent: Number(res.percent) || 0, remaining: res.remaining };
+                    const piecesUsed = getCartTotalPieces();
                     const remainingText = (res.remaining !== null && res.remaining !== undefined)
-                        ? ` (متبقي ${res.remaining} استخدام — يُحسب لكل قطعة)`
-                        : '';
+                        ? ` (سيُسجّل كـ ${piecesUsed} ${piecesUsed === 1 ? 'استخدام' : 'استخدامات'} في الشيت · متبقي ${res.remaining})`
+                        : ` (سيُسجّل كـ ${piecesUsed} ${piecesUsed === 1 ? 'استخدام' : 'استخدامات'} في الشيت)`;
                     showPromoMessage(`تم تطبيق كود (${appliedPromo.code})${remainingText}`, true);
                 } else {
                     appliedPromo = null;
@@ -1297,8 +1298,10 @@
                     governorate: governorateName,
                     address: address,
                     promo_code: appliedPromo ? appliedPromo.code : '',
-                    // عدد القطع الفعلي للكود: 3 قطع = 3 استخدامات في الشيت
+                    // عدد القطع الفعلي للكود: مثلاً 3 قطع = 3 استخدامات في الشيت
                     promo_pieces: appliedPromo ? piecesCount : 0,
+                    promo_uses: appliedPromo ? piecesCount : 0,
+                    usage_count: appliedPromo ? piecesCount : 0,
                     pieces: piecesCount,
                     items: orderItems,
                     expected_total: totals.total,
